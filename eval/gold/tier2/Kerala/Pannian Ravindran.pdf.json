@@ -1,0 +1,27 @@
+{
+  "file": "Pannian Ravindran.pdf",
+  "state": "Kerala",
+  "labeledBy": "agent-manual-read",
+  "labeledAt": "2026-10-09",
+  "form26Found": true,
+  "fields": {
+    "name": "PANNYAN P RAVEENDRAN",
+    "age": 78,
+    "gender": "Male",
+    "fatherName": "RAMAN",
+    "occupation": "POLITICIAN",
+    "constituency": "20-THIRUVANANTHAPURAM PARLIAMENTARY CONSTITUENCY",
+    "state": "KERALA",
+    "citizenship": null,
+    "educationalQualification": "6th Standard, Gorgan UP School, Kakkad 1955",
+    "criminalCases": 2,
+    "totalAssets": "1412729",
+    "totalLiabilities": "0"
+  },
+  "notes": "English-format typed Form 26 (17 pages). All key fields typed and machine-readable (values were typed into the blank form - 'TWO', 'NIL', amounts). name read from Part B 'Shri. PANNYAN P RAVEENDRAN'; address PANNYAN HOUSE, SECTION 2, KAKKAD ANGADI, PUZHATHI, KAKKAD P O, KANNUR. criminalCases=2 typed as 'TWO' (pending); convicted row = 'NIL'. educationalQualification: '6th Standard, Gorgan UP School, Kakkad 1955' (EasyOCR reads the leading token as '6th' conf 1.0; tesseract variously '6'/'61' on two pages; 'Gorgan' as printed per OCR, possibly 'Govt'). totalAssets=1412729 = movable 312729 (Rs.62,729 self + Rs.2.5 lakh spouse jewellery per Part B 'A. Moveable Assets (Total value)') + immovable 1100000 (Part B '(b) Inherited assets (Total Value)' reads '11 ... lakhs' via EasyOCR/tesseract digits; equals Part A sum of Approximate current market values: non-agricultural land Puzhathi Rs.5 lakhs (inherited) + residential building Puzhathi (survey 238/259, 1600 sqft) Rs.6 lakhs (not inherited) = 11 lakhs; note Part B lists self-acquired immovable as NIL so the 11 lakhs appears allocated to the inherited row - a Part A/B inconsistency, immovable total itself is 1,100,000). totalLiabilities='0': All liability rows including 'Grand total of liabilities' typed NIL on both the liabilities and disputed-liabilities sections. citizenship not present as a field in this form, set null.",
+  "difficulties": [
+    "Minor: education leading digit '6th' vs '61' disambiguated via EasyOCR '6th' (1.0) plus Part A '6 Standard'.",
+    "Part B immovable row allocation (self-acquired NIL vs inherited 11 lakhs) is internally inconsistent though the total equals Part A.",
+    "Affidavit uses the older 17-page format; some summary rows (e.g. movable subtotal '(vi)' on p12 written as 'RS. ... lakh') conflict in column placement, resolved in favour of the clearer Part B totals."
+  ]
+}

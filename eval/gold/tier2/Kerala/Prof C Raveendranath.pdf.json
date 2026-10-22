@@ -1,0 +1,22 @@
+{
+  "file": "Prof C Raveendranath.pdf",
+  "state": "Kerala",
+  "labeledBy": "agent-manual-read",
+  "labeledAt": "2026-10-09",
+  "form26Found": true,
+  "fields": {
+    "name": "C. Raveendranath",
+    "age": 68,
+    "gender": "Male",
+    "fatherName": "Peethambaran Kartha",
+    "occupation": null,
+    "constituency": "Chalakudy",
+    "state": "Kerala",
+    "citizenship": null,
+    "educationalQualification": null,
+    "criminalCases": null,
+    "totalAssets": null,
+    "totalLiabilities": null
+  },
+  "notes": "PDF has NO text layer; all reading was via OCR of rendered page images. Cover/declaration type-set lines are legible: contesting Lok Sabha from Chalakudy, candidate C. Raveendranath, resident of Lakshmibhavan, Panthalath Lane, Kanattukara P.O., Thrissur district, PIN 680011, aged 68, son of Peethambaran Kartha; party CPI(M). gender read as Male because the typed declaration uses the masculine form ('താമസക്കാരനായ 68 വയസുള്ള'). Phone 9496671560; email ravinath01@gmail.com. occupation: no dedicated occupation field; the income-source line (9)(a) is handwritten and unreadable -> null. educationalQualification: Part A item (10) / item (11) value is handwritten (OCR fragments only) -> null. criminalCases: item 5/6 tables handwritten; count not verifiable -> null. totalAssets/totalLiabilities: there is NO Part B summary page in this affidavit (19 pages); asset details are spread across movable (p05-p12 including additional pages) and liability (p07) tables that are handwritten. OCR recovered some typed/clear digits: joint-account FD schedule totals on the additional page (values 147200, 147200, 196400, 22000, 22000, 500000 and a printed running total that OCR'd as '99777') and spouse agricultural-land values on p12 (500000, 2700000, 1261000, etc.), but a reliable grand total for self/spouse/dependents cannot be established, so totalAssets = null. Liability table fragments (e.g. values around 1978000/1194605/300000) could not be reliably assembled -> totalLiabilities = null. citizenship is not a Form 26 field."
+}

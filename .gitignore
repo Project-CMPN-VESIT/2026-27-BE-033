@@ -2,6 +2,8 @@ node_modules/
 .next/
 .env.local
 drizzle/
+*.tsbuildinfo
+eng.traineddata
 
 # local OCR grind-loop artifacts
 ocr-grind-*.log

@@ -1,0 +1,180 @@
+{
+  "note": "Tier-2 gold sample: 20 PDFs stratified by state and engine coverage (5+5 multi-engine, 2+8 text-OCR-only).",
+  "labeledAt": "2026-10-08",
+  "files": [
+    {
+      "file": "A. Gopala Krishna.pdf",
+      "state": "Delhi",
+      "path": "Candidate Affidavits/Delhi/A. Gopala Krishna.pdf",
+      "engines": [
+        "gemini",
+        "ocr",
+        "openrouter"
+      ]
+    },
+    {
+      "file": "Akash Srivastav.pdf",
+      "state": "Delhi",
+      "path": "Candidate Affidavits/Delhi/Akash Srivastav.pdf",
+      "engines": [
+        "gemini",
+        "ocr",
+        "openrouter"
+      ]
+    },
+    {
+      "file": "Bihari Lal Jalandhari.pdf",
+      "state": "Delhi",
+      "path": "Candidate Affidavits/Delhi/Bihari Lal Jalandhari.pdf",
+      "engines": [
+        "gemini",
+        "ocr",
+        "openrouter"
+      ]
+    },
+    {
+      "file": "Harsh Malhotra  .pdf",
+      "state": "Delhi",
+      "path": "Candidate Affidavits/Delhi/Harsh Malhotra  .pdf",
+      "engines": [
+        "gemini",
+        "ocr",
+        "openrouter"
+      ]
+    },
+    {
+      "file": "Khilkhilakar.pdf",
+      "state": "Delhi",
+      "path": "Candidate Affidavits/Delhi/Khilkhilakar.pdf",
+      "engines": [
+        "gemini",
+        "ocr"
+      ]
+    },
+    {
+      "file": "Abdulsalam.pdf",
+      "state": "Kerala",
+      "path": "Candidate Affidavits/Kerala/Abdulsalam.pdf",
+      "engines": [
+        "openrouter",
+        "pdf-text"
+      ]
+    },
+    {
+      "file": "Baiju Kalasala.pdf",
+      "state": "Kerala",
+      "path": "Candidate Affidavits/Kerala/Baiju Kalasala.pdf",
+      "engines": [
+        "ocr",
+        "openrouter"
+      ]
+    },
+    {
+      "file": "Hamza Kadavandi.pdf",
+      "state": "Kerala",
+      "path": "Candidate Affidavits/Kerala/Hamza Kadavandi.pdf",
+      "engines": [
+        "ocr",
+        "openrouter"
+      ]
+    },
+    {
+      "file": "Muraleedharan Koncherillam.pdf",
+      "state": "Kerala",
+      "path": "Candidate Affidavits/Kerala/Muraleedharan Koncherillam.pdf",
+      "engines": [
+        "openrouter",
+        "pdf-text"
+      ]
+    },
+    {
+      "file": "Pannian Ravindran.pdf",
+      "state": "Kerala",
+      "path": "Candidate Affidavits/Kerala/Pannian Ravindran.pdf",
+      "engines": [
+        "ocr",
+        "openrouter"
+      ]
+    },
+    {
+      "file": "Pyush Narula.pdf",
+      "state": "Delhi",
+      "path": "Candidate Affidavits/Delhi/Pyush Narula.pdf",
+      "engines": [
+        "ocr"
+      ]
+    },
+    {
+      "file": "Yogender Chandoliya  .pdf",
+      "state": "Delhi",
+      "path": "Candidate Affidavits/Delhi/Yogender Chandoliya  .pdf",
+      "engines": [
+        "ocr"
+      ]
+    },
+    {
+      "file": "A Vijayaraghavan.pdf",
+      "state": "Kerala",
+      "path": "Candidate Affidavits/Kerala/A Vijayaraghavan.pdf",
+      "engines": [
+        "ocr"
+      ]
+    },
+    {
+      "file": "Adv.Harikumar M.K..pdf",
+      "state": "Kerala",
+      "path": "Candidate Affidavits/Kerala/Adv.Harikumar M.K..pdf",
+      "engines": [
+        "ocr"
+      ]
+    },
+    {
+      "file": "C Rajamanickam.pdf",
+      "state": "Kerala",
+      "path": "Candidate Affidavits/Kerala/C Rajamanickam.pdf",
+      "engines": [
+        "ocr"
+      ]
+    },
+    {
+      "file": "Jayarajan.pdf",
+      "state": "Kerala",
+      "path": "Candidate Affidavits/Kerala/Jayarajan.pdf",
+      "engines": [
+        "pdf-text"
+      ]
+    },
+    {
+      "file": "K. Sudhakaran.pdf",
+      "state": "Kerala",
+      "path": "Candidate Affidavits/Kerala/K. Sudhakaran.pdf",
+      "engines": [
+        "pdf-text"
+      ]
+    },
+    {
+      "file": "Manthara Velayudhan.pdf",
+      "state": "Kerala",
+      "path": "Candidate Affidavits/Kerala/Manthara Velayudhan.pdf",
+      "engines": [
+        "pdf-text"
+      ]
+    },
+    {
+      "file": "Prof C Raveendranath.pdf",
+      "state": "Kerala",
+      "path": "Candidate Affidavits/Kerala/Prof C Raveendranath.pdf",
+      "engines": [
+        "ocr"
+      ]
+    },
+    {
+      "file": "Shafi.pdf",
+      "state": "Kerala",
+      "path": "Candidate Affidavits/Kerala/Shafi.pdf",
+      "engines": [
+        "pdf-text"
+      ]
+    }
+  ]
+}

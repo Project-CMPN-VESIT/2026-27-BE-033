@@ -1,0 +1,22 @@
+{
+  "file": "Manthara Velayudhan.pdf",
+  "state": "Kerala",
+  "labeledBy": "agent-manual-read",
+  "labeledAt": "2026-10-09",
+  "form26Found": true,
+  "fields": {
+    "name": "Manthara Velayudhan",
+    "age": null,
+    "gender": null,
+    "fatherName": null,
+    "occupation": null,
+    "constituency": null,
+    "state": "Kerala",
+    "citizenship": null,
+    "educationalQualification": null,
+    "criminalCases": null,
+    "totalAssets": null,
+    "totalLiabilities": null
+  },
+  "notes": "Form 26 present (notarized by IV. Chandrasekharan Pillai, Sasthamcotta, Kollam). Only the pre-printed Malayalam labels are clean; all candidate-entered values are handwritten and OCR to unusable garbage. Name 'Manthara Velayudhan' is corroborated by the candidate's own typed/handwritten social-media handles in Part A item (3) ('Manthara Velayudhan', facebook/instagram/whatsapp) and the email mantharaqq@gmail.com. age: declaration line 'resident aged ..7.. years' is handwritten and unreadable -> null. fatherName: handwritten, unreadable -> null. constituency: cover/Part A item (2) constituency name is handwritten and unreadable -> null. occupation: income-source line (9)(a) 'സ്വന്തം ...' value is handwritten/unreadable -> null. educationalQualification: Part A item (10) and Part B row 11 values are handwritten; OCR fragments suggest mention of SSLC/PDC/BA and 'DB College' but cannot be resolved -> null. criminalCases: item 5/6 tables are handwritten and overlapped by the notary stamp; count not verifiable -> null. totalAssets/totalLiabilities: Part B columns handwritten and unreadable -> null. Party shown as 'Secular Democratic Front (SDF)'. gender/citizenship not fields in Form 26. The '536/2011' reference is printed Form 26 notes boilerplate."
+}

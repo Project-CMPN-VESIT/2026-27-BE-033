@@ -1,0 +1,27 @@
+{
+  "file": "Hamza Kadavandi.pdf",
+  "state": "Kerala",
+  "labeledBy": "agent-manual-read",
+  "labeledAt": "2026-10-09",
+  "form26Found": true,
+  "fields": {
+    "name": "ഹംസ കടവണ്ടി",
+    "age": 61,
+    "gender": "Male",
+    "fatherName": "കുഞ്ഞീൻ",
+    "occupation": null,
+    "constituency": "07-പൊന്നാനി",
+    "state": "കേരളം",
+    "citizenship": null,
+    "educationalQualification": null,
+    "criminalCases": null,
+    "totalAssets": null,
+    "totalLiabilities": null
+  },
+  "notes": "Malayalam-format Form 26 affidavit (15 pages), Malappuram district (notary stamp), postal PIN 676503 (Indiyanur/Kadavandi). name/age/father read from Part A item (1) preamble ('...61 വയസ്സുള്ള കുഞ്ഞീൻ...' structure); gender Male from 'താമസക്കാരനായ' masculine phrasing. constituency read from Part B row 3 as '07-പൊന്നാനി'; state 'കേരളം'. occupation: Part A item (9) sub-item '(എ) സ്വന്തം' (own/self) visible but the occupation value itself is illegible to OCR, set null. education: Part B row value illegible ('19'/'garbage'), set null. criminalCases: Part B pending-case count handwritten and not disambiguable - OCR variants '24' (EasyOCR, conf ~0.79), '254'/'ca'/'൦'(Malayalam zero) (tesseract); Part A item (5) detail page shows one case block; set null with range 1-24. totalAssets: Part B asset summary rows (movable and immovable incl. total '(ആകെ മുല്യം)' row p14) contain handwritten values that all OCR engines read as noise ('ULAtI','One','enc' etc.), set null. totalLiabilities: Part B liability '(ആകെ)' total rows read as digit noise ('20','24','2' / '724','14','12' / '9','4'); unable to determine real amounts or NIL, set null.",
+  "difficulties": [
+    "Handwritten Malayalam and Arabic-digit cells unreadable by tesseract/EasyOCR at 300-3600 DPI upscales.",
+    "Case-count, asset and liability cells produced inconsistent digit guesses across engines/variants.",
+    "Model cannot view images, so no visual cross-check possible."
+  ]
+}

@@ -1,0 +1,22 @@
+{
+  "file": "K. Sudhakaran.pdf",
+  "state": "Kerala",
+  "labeledBy": "agent-manual-read",
+  "labeledAt": "2026-10-09",
+  "form26Found": true,
+  "fields": {
+    "name": "K. Sudhakaran",
+    "age": 61,
+    "gender": null,
+    "fatherName": "Krishnan",
+    "occupation": null,
+    "constituency": "Kannur",
+    "state": "Kerala",
+    "citizenship": null,
+    "educationalQualification": null,
+    "criminalCases": null,
+    "totalAssets": null,
+    "totalLiabilities": null
+  },
+  "notes": "Cover/declaration text layer is typed and clear: contesting Lok Sabha from constituency 2 (Kannur); the declaration reads 'son of Krishnan, resident aged 61'. Name K. Sudhakaran, father Krishnan, age 61 are taken from the typed declaration page (p02); a handwritten age that OCR'd as '81' appears on another page and is deemed a misread of 61. Occupation: the income-source line (9)(a) 'സ്വന്തം ...' is left blank, so occupation is null. educationalQualification: Part A item (10) value and Part B row 11 value are handwritten and the scan/font make them unreadable (OCR yields only garbage), so null. criminalCases: Part A item 5/6 and Part B item 3 table cells are handwritten/overlapped by the notary stamp; a reliable count of filled case columns could not be established, so null. totalAssets: Part B movable/immovable totals per column are handwritten; a single digit sequence '19,26,000' was recovered but it cannot be attributed to a grand total (Part B prints no grand-total row), so null. totalLiabilities: Part B liability rows and item 8/9/10 handwritten values could not be read, so null. The '536/2011' reference on p07 is the printed Form 26 notes boilerplate (Supreme Court WP example), not an actual case. Notary O.K. Sasinathan, Kannur. PIN 670611; phone 85052683. gender/citizenship not fields in Form 26 (left null)."
+}

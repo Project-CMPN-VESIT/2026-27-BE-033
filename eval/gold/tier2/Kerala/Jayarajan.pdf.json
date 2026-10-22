@@ -1,0 +1,22 @@
+{
+  "file": "Jayarajan.pdf",
+  "state": "Kerala",
+  "labeledBy": "agent-manual-read",
+  "labeledAt": "2026-10-09",
+  "form26Found": true,
+  "fields": {
+    "name": "M.V. Jayarajan",
+    "age": 61,
+    "gender": null,
+    "fatherName": "Velayudhan",
+    "occupation": "Coolie",
+    "constituency": "Thrissur",
+    "state": "Kerala",
+    "citizenship": null,
+    "educationalQualification": "SSLC (failed) - Valapad Govt. Highschool, Valapad - 1981",
+    "criminalCases": 0,
+    "totalAssets": "247265.81",
+    "totalLiabilities": "0"
+  },
+  "notes": "Affidavit has a usable text layer (typed Malayalam + Latin), so fields are transcribed with high confidence. Declaration: resident of Mullankara, Valapad P.O., Thrissur-680587, age 61, son of Velayudhan. Contesting as an independent. Part A item (2) states the candidate is on the voter roll of Lok Sabha constituency 10 (Thrissur), Nattika assembly constituency 68, part 129, serial 233; the cover-page constituency heading OCR'd ambiguously ('02 Kannur') but item (2) clearly reads '10 Thrissur Lok Sabha', so constituency = Thrissur. Phone 9895404553; no email; PAN BLOPJ3169H. Occupation taken from income-source line item (9)(a) 'കൂലിപ്പണി' (coolie). Education taken from Part A item (10) and Part B row 11: 'SSLC (failed) - Valapad Govt. Highschool, Valapad - 1981'. criminalCases = 0: Part A item (5) states explicitly no criminal cases pending and Part B item 3 totals are nil. totalAssets = sum of Part B movable-asset per-column totals (self 93965.81 + spouse 101200 + dependent-1 51500 + dependent-2 600); immovable assets declared nil (0). totalLiabilities = 0 (all liability rows declared 'ഇല്ല'/nil). gender and citizenship are not fields in Form 26 and were not inferred (left null)."
+}

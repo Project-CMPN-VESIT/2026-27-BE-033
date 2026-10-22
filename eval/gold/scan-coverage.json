@@ -1,0 +1,2756 @@
+[
+  {
+    "filename": "A Vijayaraghavan.pdf",
+    "sources": [
+      "ocr"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "A. Gopala Krishna.pdf",
+    "sources": [
+      "gemini",
+      "ocr",
+      "openrouter"
+    ],
+    "models": [
+      "gemini-3-flash-preview",
+      "qwen/qwen3-vl-32b-instruct",
+      null
+    ],
+    "rows": 9
+  },
+  {
+    "filename": "A. M Ariff.pdf",
+    "sources": [
+      "ocr"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "Abdul Basit.pdf",
+    "sources": [
+      "gemini",
+      "ocr",
+      "openrouter"
+    ],
+    "models": [
+      "gemini-3-flash-preview",
+      "qwen/qwen3-vl-32b-instruct",
+      null
+    ],
+    "rows": 8
+  },
+  {
+    "filename": "Abdul Kalam Azad.pdf",
+    "sources": [
+      "gemini",
+      "ocr",
+      "openrouter",
+      null
+    ],
+    "models": [
+      "gemini-3-flash-preview",
+      "qwen/qwen3-vl-32b-instruct",
+      null
+    ],
+    "rows": 8
+  },
+  {
+    "filename": "Abdul Kareem K. son of Assain.pdf",
+    "sources": [
+      "unavailable"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "Abdul Kareem Son of Ayammath Kutty.pdf",
+    "sources": [
+      "ocr"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "Abdul Kareem Son of Mahammood.pdf",
+    "sources": [
+      "ocr"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "Abdulsalam.pdf",
+    "sources": [
+      "openrouter",
+      "pdf-text"
+    ],
+    "models": [
+      "google/gemma-4-31b-it:free",
+      null
+    ],
+    "rows": 2
+  },
+  {
+    "filename": "Abdussamed Malayampalli.pdf",
+    "sources": [
+      "ocr"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "Achla Jethmalani.pdf",
+    "sources": [
+      "gemini",
+      "ocr",
+      "openrouter"
+    ],
+    "models": [
+      "gemini-3-flash-preview",
+      "qwen/qwen3-vl-32b-instruct",
+      null
+    ],
+    "rows": 5
+  },
+  {
+    "filename": "Aditi.pdf",
+    "sources": [
+      "gemini",
+      "ocr",
+      "openrouter"
+    ],
+    "models": [
+      "gemini-3-flash-preview",
+      "qwen/qwen3-vl-32b-instruct",
+      null
+    ],
+    "rows": 5
+  },
+  {
+    "filename": "Adoor Prakash  .pdf",
+    "sources": [
+      "pdf-text"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "Adv Arun Kumar C A.pdf",
+    "sources": [
+      "ocr"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "Adv Charly Paul.pdf",
+    "sources": [
+      "ocr"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "Adv K Francis George  .pdf",
+    "sources": [
+      "ocr"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "Adv P K Narayanan.pdf",
+    "sources": [
+      "ocr"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "Adv Rajendran.pdf",
+    "sources": [
+      "ocr",
+      "openrouter"
+    ],
+    "models": [
+      "google/gemma-4-31b-it:free",
+      null
+    ],
+    "rows": 2
+  },
+  {
+    "filename": "Adv Shine Lal M P.pdf",
+    "sources": [
+      "ocr"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "Adv V S Sunilkumar.pdf",
+    "sources": [
+      "ocr"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "Adv. Antony Judy.pdf",
+    "sources": [
+      "ocr"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "Adv. Bhim Kishor.pdf",
+    "sources": [
+      "gemini",
+      "ocr",
+      "openrouter"
+    ],
+    "models": [
+      "gemini-3-flash-preview",
+      "qwen/qwen3-vl-32b-instruct",
+      null
+    ],
+    "rows": 5
+  },
+  {
+    "filename": "Adv. Dean Kuriakose  .pdf",
+    "sources": [
+      "ocr"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "Adv. Joice George.pdf",
+    "sources": [
+      "ocr"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "Adv. K.T. Paluskar.pdf",
+    "sources": [
+      "gemini",
+      "ocr",
+      "openrouter"
+    ],
+    "models": [
+      "gemini-3-flash-preview",
+      "qwen/qwen3-vl-32b-instruct",
+      null
+    ],
+    "rows": 4
+  },
+  {
+    "filename": "Adv. Krupal.pdf",
+    "sources": [
+      "gemini",
+      "openrouter",
+      "pdf-text"
+    ],
+    "models": [
+      "gemini-3-flash-preview",
+      "qwen/qwen3-vl-32b-instruct",
+      null
+    ],
+    "rows": 4
+  },
+  {
+    "filename": "Adv. Nivedida.pdf",
+    "sources": [
+      "ocr"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "Adv. Russel Joy.pdf",
+    "sources": [
+      "ocr"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "Adv. Sangeetha Viswanathan.pdf",
+    "sources": [
+      "ocr"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "Adv.Harikumar M.K..pdf",
+    "sources": [
+      "ocr"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "Adv.K.M Shajahan.pdf",
+    "sources": [
+      "ocr"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "Adv.P.K.Geethakrishnan.pdf",
+    "sources": [
+      "ocr"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "Advocate Dr. Mahender Singh Churiyana.pdf",
+    "sources": [
+      "gemini",
+      "ocr",
+      "openrouter"
+    ],
+    "models": [
+      "gemini-3-flash-preview",
+      "qwen/qwen3-vl-32b-instruct",
+      null
+    ],
+    "rows": 4
+  },
+  {
+    "filename": "Advocate Manjeet Singh.pdf",
+    "sources": [
+      "gemini",
+      "ocr",
+      "openrouter"
+    ],
+    "models": [
+      "gemini-3-flash-preview",
+      "qwen/qwen3-vl-32b-instruct",
+      null
+    ],
+    "rows": 4
+  },
+  {
+    "filename": "Advocate Satish Chandra.pdf",
+    "sources": [
+      "gemini",
+      "ocr",
+      "openrouter"
+    ],
+    "models": [
+      "gemini-3-flash-preview",
+      "qwen/qwen3-vl-32b-instruct",
+      null
+    ],
+    "rows": 4
+  },
+  {
+    "filename": "Aj Rajan.pdf",
+    "sources": [
+      "gemini",
+      "ocr",
+      "openrouter"
+    ],
+    "models": [
+      "gemini-3-flash-preview",
+      "qwen/qwen3-vl-32b-instruct",
+      null
+    ],
+    "rows": 4
+  },
+  {
+    "filename": "Ajay Tiwari.pdf",
+    "sources": [
+      "gemini",
+      "ocr",
+      "openrouter"
+    ],
+    "models": [
+      "gemini-3-flash-preview",
+      "qwen/qwen3-vl-32b-instruct",
+      null
+    ],
+    "rows": 4
+  },
+  {
+    "filename": "Ajeeb Muhammed.pdf",
+    "sources": [
+      "ocr"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "Akash Srivastav.pdf",
+    "sources": [
+      "gemini",
+      "ocr",
+      "openrouter"
+    ],
+    "models": [
+      "gemini-3-flash-preview",
+      "qwen/qwen3-vl-32b-instruct",
+      null
+    ],
+    "rows": 4
+  },
+  {
+    "filename": "Akeshan Dut.pdf",
+    "sources": [
+      "gemini",
+      "ocr",
+      "openrouter"
+    ],
+    "models": [
+      "gemini-3-flash-preview",
+      "qwen/qwen3-vl-32b-instruct",
+      null
+    ],
+    "rows": 4
+  },
+  {
+    "filename": "Amit Gupta.pdf",
+    "sources": [
+      "gemini",
+      "ocr",
+      "openrouter"
+    ],
+    "models": [
+      "gemini-3-flash-preview",
+      "qwen/qwen3-vl-32b-instruct",
+      null
+    ],
+    "rows": 4
+  },
+  {
+    "filename": "Amit Kumar Singh.pdf",
+    "sources": [
+      "gemini",
+      "ocr",
+      "openrouter"
+    ],
+    "models": [
+      "gemini-3-flash-preview",
+      "qwen/qwen3-vl-32b-instruct",
+      null
+    ],
+    "rows": 4
+  },
+  {
+    "filename": "Aneesh Payyannur.pdf",
+    "sources": [
+      "pdf-text"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "Anil K.Antony.pdf",
+    "sources": [
+      "ocr"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "Anju Sharma.pdf",
+    "sources": [
+      "gemini",
+      "ocr",
+      "openrouter"
+    ],
+    "models": [
+      "gemini-3-flash-preview",
+      "qwen/qwen3-vl-32b-instruct",
+      null
+    ],
+    "rows": 4
+  },
+  {
+    "filename": "Anna Kuriakose.pdf",
+    "sources": [
+      "ocr"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "Annie Raja.pdf",
+    "sources": [
+      "ocr"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "Anoop V..pdf",
+    "sources": [
+      "ocr"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "Anto Antony  .pdf",
+    "sources": [
+      "ocr"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "Aramukhan.pdf",
+    "sources": [
+      "ocr"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "Aravindakshan Nair M. K..pdf",
+    "sources": [
+      "ocr",
+      "openrouter"
+    ],
+    "models": [
+      "google/gemma-4-31b-it:free",
+      null
+    ],
+    "rows": 2
+  },
+  {
+    "filename": "Arjunan.pdf",
+    "sources": [
+      "ocr",
+      "openrouter"
+    ],
+    "models": [
+      "google/gemma-4-31b-it:free",
+      null
+    ],
+    "rows": 2
+  },
+  {
+    "filename": "Arun Edathadan.pdf",
+    "sources": [
+      "ocr"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "Arun Kumar.pdf",
+    "sources": [
+      "gemini",
+      "ocr",
+      "openrouter"
+    ],
+    "models": [
+      "gemini-3-flash-preview",
+      "qwen/qwen3-vl-32b-instruct",
+      null
+    ],
+    "rows": 4
+  },
+  {
+    "filename": "Arunima Gautam.pdf",
+    "sources": [
+      "gemini",
+      "ocr",
+      "openrouter"
+    ],
+    "models": [
+      "gemini-3-flash-preview",
+      "qwen/qwen3-vl-32b-instruct",
+      null
+    ],
+    "rows": 3
+  },
+  {
+    "filename": "Ashok Kumar Gupta.pdf",
+    "sources": [
+      "gemini",
+      "ocr",
+      "openrouter"
+    ],
+    "models": [
+      "gemini-3-flash-preview",
+      "qwen/qwen3-vl-32b-instruct",
+      null
+    ],
+    "rows": 3
+  },
+  {
+    "filename": "Ashok Kumar(North east delhi).pdf",
+    "sources": [
+      "gemini",
+      "ocr",
+      "openrouter"
+    ],
+    "models": [
+      "gemini-3-flash-preview",
+      "qwen/qwen3-vl-32b-instruct",
+      null
+    ],
+    "rows": 3
+  },
+  {
+    "filename": "Ashok Mishra.pdf",
+    "sources": [
+      "gemini",
+      "openrouter",
+      "pdf-text"
+    ],
+    "models": [
+      "gemini-3-flash-preview",
+      "qwen/qwen3-vl-32b-instruct",
+      null
+    ],
+    "rows": 3
+  },
+  {
+    "filename": "Babita Yadav.pdf",
+    "sources": [
+      "gemini",
+      "ocr",
+      "openrouter"
+    ],
+    "models": [
+      "gemini-3-flash-preview",
+      "qwen/qwen3-vl-32b-instruct",
+      null
+    ],
+    "rows": 3
+  },
+  {
+    "filename": "Baiju Kalasala.pdf",
+    "sources": [
+      "ocr",
+      "openrouter"
+    ],
+    "models": [
+      "google/gemma-4-31b-it:free",
+      null
+    ],
+    "rows": 2
+  },
+  {
+    "filename": "Balakrishnan N.pdf",
+    "sources": [
+      "ocr"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "Bansuri Swaraj  .pdf",
+    "sources": [
+      "gemini",
+      "ocr",
+      "openrouter"
+    ],
+    "models": [
+      "gemini-3-flash-preview",
+      "qwen/qwen3-vl-32b-instruct",
+      null
+    ],
+    "rows": 3
+  },
+  {
+    "filename": "Benny Behanan  .pdf",
+    "sources": [
+      "ocr"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "Bhim Singh.pdf",
+    "sources": [
+      "gemini",
+      "ocr",
+      "openrouter"
+    ],
+    "models": [
+      "gemini-3.8-flash",
+      "qwen/qwen3-vl-32b-instruct",
+      null
+    ],
+    "rows": 3
+  },
+  {
+    "filename": "Bihari Lal Jalandhari.pdf",
+    "sources": [
+      "gemini",
+      "ocr",
+      "openrouter"
+    ],
+    "models": [
+      "gemini-3.8-flash",
+      "qwen/qwen3-vl-32b-instruct",
+      null
+    ],
+    "rows": 3
+  },
+  {
+    "filename": "Bindhu.pdf",
+    "sources": [
+      "ocr"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "Birpal Singh Koli.pdf",
+    "sources": [
+      "gemini",
+      "ocr",
+      "openrouter"
+    ],
+    "models": [
+      "gemini-3-flash-preview",
+      "qwen/qwen3-vl-32b-instruct",
+      null
+    ],
+    "rows": 3
+  },
+  {
+    "filename": "Bosco Kalamassery.pdf",
+    "sources": [
+      "ocr"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "Brahmakumar.pdf",
+    "sources": [
+      "ocr"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "Bro Noushad Sheriff J.pdf",
+    "sources": [
+      "ocr"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "C Krishnakumar.pdf",
+    "sources": [
+      "ocr",
+      "openrouter"
+    ],
+    "models": [
+      "google/gemma-4-31b-it:free",
+      null
+    ],
+    "rows": 2
+  },
+  {
+    "filename": "C Monichen.pdf",
+    "sources": [
+      "ocr"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "C Rajamanickam.pdf",
+    "sources": [
+      "ocr"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "C. Balakrishnan Yadav.pdf",
+    "sources": [
+      "ocr"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "C. Raghunath.pdf",
+    "sources": [
+      "ocr"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "Chalai Mohanan.pdf",
+    "sources": [
+      "ocr"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "Chaman Lal Verma.pdf",
+    "sources": [
+      "gemini",
+      "ocr",
+      "openrouter"
+    ],
+    "models": [
+      "gemini-3-flash-preview",
+      "qwen/qwen3-vl-32b-instruct",
+      null
+    ],
+    "rows": 3
+  },
+  {
+    "filename": "Chander Pal Soni.pdf",
+    "sources": [
+      "gemini",
+      "ocr",
+      "openrouter"
+    ],
+    "models": [
+      "gemini-3.8-flash",
+      "qwen/qwen3-vl-32b-instruct",
+      null
+    ],
+    "rows": 3
+  },
+  {
+    "filename": "Chandrabose P.pdf",
+    "sources": [
+      "ocr"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "Chandrashekhar Singh Kushwaha.pdf",
+    "sources": [
+      "gemini",
+      "ocr",
+      "openrouter"
+    ],
+    "models": [
+      "gemini-3.8-flash",
+      "qwen/qwen3-vl-32b-instruct",
+      null
+    ],
+    "rows": 3
+  },
+  {
+    "filename": "Charanjeet Singh.pdf",
+    "sources": [
+      "gemini",
+      "ocr",
+      "openrouter"
+    ],
+    "models": [
+      "gemini-3.8-flash",
+      "qwen/qwen3-vl-32b-instruct",
+      null
+    ],
+    "rows": 3
+  },
+  {
+    "filename": "Cyrill Skaria.pdf",
+    "sources": [
+      "ocr"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "Deepak Kapila.pdf",
+    "sources": [
+      "gemini",
+      "ocr",
+      "openrouter"
+    ],
+    "models": [
+      "gemini-3.7-flash",
+      "qwen/qwen3-vl-32b-instruct",
+      null
+    ],
+    "rows": 3
+  },
+  {
+    "filename": "Deepak Sharma.pdf",
+    "sources": [
+      "gemini",
+      "ocr",
+      "openrouter"
+    ],
+    "models": [
+      "gemini-3.7-flash",
+      "qwen/qwen3-vl-32b-instruct",
+      null
+    ],
+    "rows": 3
+  },
+  {
+    "filename": "Dilip Singh.pdf",
+    "sources": [
+      "gemini",
+      "ocr",
+      "openrouter"
+    ],
+    "models": [
+      "gemini-3.8-flash",
+      "qwen/qwen3-vl-32b-instruct",
+      null
+    ],
+    "rows": 3
+  },
+  {
+    "filename": "Dinesh Kumar.pdf",
+    "sources": [
+      "gemini",
+      "openrouter",
+      "pdf-text"
+    ],
+    "models": [
+      "gemini-3.8-flash",
+      "qwen/qwen3-vl-32b-instruct",
+      null
+    ],
+    "rows": 3
+  },
+  {
+    "filename": "Divakaran Pallath.pdf",
+    "sources": [
+      "ocr"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "Dr T N Sarasu.pdf",
+    "sources": [
+      "ocr"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "Dr. Abdul Salam.pdf",
+    "sources": [
+      "pdf-text"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "Dr. K. S. Radhakrishnan.pdf",
+    "sources": [
+      "ocr"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "Dr. M. Jyothiraj.pdf",
+    "sources": [
+      "ocr"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "Dr. M.P Abdussamad Samadani  .pdf",
+    "sources": [
+      "pdf-text"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "Dr.T.M.Thomas Issac.pdf",
+    "sources": [
+      "ocr",
+      "openrouter"
+    ],
+    "models": [
+      "google/gemma-4-31b-it:free",
+      null
+    ],
+    "rows": 2
+  },
+  {
+    "filename": "E.T. Mohammed Basheer  .pdf",
+    "sources": [
+      "pdf-text"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "Elamaram Kareem.pdf",
+    "sources": [
+      "ocr",
+      "openrouter"
+    ],
+    "models": [
+      "google/gemma-4-31b-it:free",
+      null
+    ],
+    "rows": 2
+  },
+  {
+    "filename": "Gautam Anand.pdf",
+    "sources": [
+      "gemini",
+      "ocr",
+      "openrouter"
+    ],
+    "models": [
+      "gemini-3-flash-preview",
+      "qwen/qwen3-vl-32b-instruct",
+      null
+    ],
+    "rows": 3
+  },
+  {
+    "filename": "Gokulam Suresh Kumar.pdf",
+    "sources": [
+      "ocr"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "Guljar Singh.pdf",
+    "sources": [
+      "gemini",
+      "ocr",
+      "openrouter",
+      null
+    ],
+    "models": [
+      "gemini-3-flash-preview",
+      "qwen/qwen3-vl-32b-instruct",
+      null
+    ],
+    "rows": 7
+  },
+  {
+    "filename": "Hamsa Son of Moidutty.pdf",
+    "sources": [
+      "ocr"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "Hamza Kadavandi.pdf",
+    "sources": [
+      "ocr",
+      "openrouter"
+    ],
+    "models": [
+      "google/gemma-4-31b-it:free",
+      null
+    ],
+    "rows": 2
+  },
+  {
+    "filename": "Hari Arumbil.pdf",
+    "sources": [
+      "ocr"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "Hari Kishan (Mechanic).pdf",
+    "sources": [
+      "gemini",
+      "ocr",
+      "openrouter"
+    ],
+    "models": [
+      "gemini-3.7-flash",
+      "qwen/qwen3-vl-32b-instruct",
+      null
+    ],
+    "rows": 3
+  },
+  {
+    "filename": "Harsh Malhotra  .pdf",
+    "sources": [
+      "gemini",
+      "ocr",
+      "openrouter"
+    ],
+    "models": [
+      "gemini-3-flash-preview",
+      "qwen/qwen3-vl-32b-instruct",
+      null
+    ],
+    "rows": 3
+  },
+  {
+    "filename": "Heena.pdf",
+    "sources": [
+      "gemini",
+      "ocr",
+      "openrouter"
+    ],
+    "models": [
+      "gemini-3-flash-preview",
+      "qwen/qwen3-vl-32b-instruct",
+      null
+    ],
+    "rows": 3
+  },
+  {
+    "filename": "Hibi Eden  .pdf",
+    "sources": [
+      "ocr"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "Hira Lal.pdf",
+    "sources": [
+      "gemini",
+      "ocr",
+      "openrouter"
+    ],
+    "models": [
+      "gemini-3-flash-preview",
+      "qwen/qwen3-vl-32b-instruct",
+      null
+    ],
+    "rows": 3
+  },
+  {
+    "filename": "J J Russell.pdf",
+    "sources": [
+      "ocr"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "Jagdish Kumar Verma.pdf",
+    "sources": [
+      "gemini",
+      "ocr",
+      "openrouter"
+    ],
+    "models": [
+      "gemini-3-flash-preview",
+      "qwen/qwen3-vl-32b-instruct",
+      null
+    ],
+    "rows": 3
+  },
+  {
+    "filename": "Jai Prakash Agarwal.pdf",
+    "sources": [
+      "gemini",
+      "ocr",
+      null
+    ],
+    "models": [
+      "gemini-3-flash-preview",
+      null
+    ],
+    "rows": 3
+  },
+  {
+    "filename": "Jai Ram Lal.pdf",
+    "sources": [
+      "gemini",
+      "ocr"
+    ],
+    "models": [
+      "gemini-3-flash-preview",
+      null
+    ],
+    "rows": 2
+  },
+  {
+    "filename": "Jarnail Singh.pdf",
+    "sources": [
+      "gemini",
+      "ocr"
+    ],
+    "models": [
+      "gemini-3-flash-preview",
+      null
+    ],
+    "rows": 2
+  },
+  {
+    "filename": "Jaya Raman.pdf",
+    "sources": [
+      "gemini",
+      "ocr"
+    ],
+    "models": [
+      "gemini-3-flash-preview",
+      null
+    ],
+    "rows": 2
+  },
+  {
+    "filename": "Jayakrishnan P.pdf",
+    "sources": [
+      "ocr",
+      null
+    ],
+    "models": [
+      null
+    ],
+    "rows": 2
+  },
+  {
+    "filename": "Jayaraj.pdf",
+    "sources": [
+      "openrouter",
+      "pdf-text"
+    ],
+    "models": [
+      "google/gemma-4-31b-it:free",
+      null
+    ],
+    "rows": 2
+  },
+  {
+    "filename": "Jayarajan.pdf",
+    "sources": [
+      "pdf-text"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "Joemon Joseph Srampickal A P J Juman V S.pdf",
+    "sources": [
+      "ocr"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "Johnson K C.pdf",
+    "sources": [
+      "ocr"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "Jomon John.pdf",
+    "sources": [
+      "ocr"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "Jose Saranath.pdf",
+    "sources": [
+      "ocr"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "Joshi Villadom.pdf",
+    "sources": [
+      "ocr"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "Jossin K Joseph.pdf",
+    "sources": [
+      "ocr"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "Joy John Pattar Madathil.pdf",
+    "sources": [
+      "pdf-text"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "Joy P.Mathew.pdf",
+    "sources": [
+      "ocr"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "Jyothi Abraham.pdf",
+    "sources": [
+      "ocr"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "Jyoti Prakash (Monu).pdf",
+    "sources": [
+      "gemini",
+      "ocr"
+    ],
+    "models": [
+      "gemini-3-flash-preview",
+      null
+    ],
+    "rows": 2
+  },
+  {
+    "filename": "K A Unnikrishnan.pdf",
+    "sources": [
+      "ocr"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "K Bimalji.pdf",
+    "sources": [
+      "ocr"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "K K Shailaja.pdf",
+    "sources": [
+      "ocr"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "K K Shylaja.pdf",
+    "sources": [
+      "ocr"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "K M Kajal.pdf",
+    "sources": [
+      "gemini",
+      "ocr"
+    ],
+    "models": [
+      "gemini-3-flash-preview",
+      null
+    ],
+    "rows": 2
+  },
+  {
+    "filename": "K Muraleedharan.pdf",
+    "sources": [
+      "ocr"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "K Surendran.pdf",
+    "sources": [
+      "ocr"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "K T Padmini.pdf",
+    "sources": [
+      "ocr"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "K. C Venugopal  .pdf",
+    "sources": [
+      "ocr",
+      null
+    ],
+    "models": [
+      null
+    ],
+    "rows": 2
+  },
+  {
+    "filename": "K. J. Shine.pdf",
+    "sources": [
+      "ocr"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "K. Sudhakaran.pdf",
+    "sources": [
+      "pdf-text"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "K. Sudhakaran  .pdf",
+    "sources": [
+      "pdf-text"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "K.C.Thomas.pdf",
+    "sources": [
+      "ocr"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "K.Radhakrishnan  .pdf",
+    "sources": [
+      "ocr"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "K.S Hamza.pdf",
+    "sources": [
+      "ocr"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "Kamaljeet Sehrawat  .pdf",
+    "sources": [
+      "gemini",
+      "ocr"
+    ],
+    "models": [
+      "gemini-3-flash-preview",
+      null
+    ],
+    "rows": 2
+  },
+  {
+    "filename": "Kamlesh Kumar Jha.pdf",
+    "sources": [
+      "gemini",
+      "ocr",
+      "openrouter",
+      null
+    ],
+    "models": [
+      "gemini-3-flash-preview",
+      "google/gemma-4-31b-it:free",
+      null
+    ],
+    "rows": 4
+  },
+  {
+    "filename": "Kapil Marwah.pdf",
+    "sources": [
+      "gemini",
+      "pdf-text"
+    ],
+    "models": [
+      "gemini-3-flash-preview",
+      null
+    ],
+    "rows": 2
+  },
+  {
+    "filename": "Khilkhilakar.pdf",
+    "sources": [
+      "gemini",
+      "ocr"
+    ],
+    "models": [
+      "gemini-3-flash-preview",
+      null
+    ],
+    "rows": 2
+  },
+  {
+    "filename": "Kodikunnil Suresh  .pdf",
+    "sources": [
+      "pdf-text"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "Kozhuvasseril Suresh.pdf",
+    "sources": [
+      "ocr"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "Krishnakumar G.pdf",
+    "sources": [
+      "ocr"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "Krishnankutty Kunissery.pdf",
+    "sources": [
+      "ocr",
+      "openrouter"
+    ],
+    "models": [
+      "google/gemma-4-31b-it:free",
+      null
+    ],
+    "rows": 2
+  },
+  {
+    "filename": "Kuldeep Kumar (Monu).pdf",
+    "sources": [
+      "gemini",
+      "ocr",
+      null
+    ],
+    "models": [
+      "gemini-3-flash-preview",
+      null
+    ],
+    "rows": 3
+  },
+  {
+    "filename": "Kuldeep Kumar.pdf",
+    "sources": [
+      "gemini",
+      "ocr"
+    ],
+    "models": [
+      "gemini-3-flash-preview",
+      null
+    ],
+    "rows": 2
+  },
+  {
+    "filename": "Kunhikannan Payyoli.pdf",
+    "sources": [
+      "ocr"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "Lal Singh.pdf",
+    "sources": [
+      "gemini",
+      "ocr"
+    ],
+    "models": [
+      "gemini-3-flash-preview",
+      null
+    ],
+    "rows": 2
+  },
+  {
+    "filename": "Lukman Khan.pdf",
+    "sources": [
+      "gemini",
+      "pdf-text"
+    ],
+    "models": [
+      "gemini-3-flash-preview",
+      null
+    ],
+    "rows": 2
+  },
+  {
+    "filename": "M M Scaria.pdf",
+    "sources": [
+      "pdf-text"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "M Mukesh.pdf",
+    "sources": [
+      "ocr",
+      "openrouter"
+    ],
+    "models": [
+      "google/gemma-4-31b-it:free",
+      null
+    ],
+    "rows": 2
+  },
+  {
+    "filename": "M S Jafarghan.pdf",
+    "sources": [
+      "ocr"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "M S Subi.pdf",
+    "sources": [
+      "ocr"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "M. K. Raghavan  .pdf",
+    "sources": [
+      "ocr"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "M. T. Ramesh.pdf",
+    "sources": [
+      "ocr"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "M.L Ashwini.pdf",
+    "sources": [
+      "pdf-text"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "M.V Balakrishnan.pdf",
+    "sources": [
+      "pdf-text"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "M.V. Jayarajan.pdf",
+    "sources": [
+      "ocr"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "Mahesh Kumar Denwal.pdf",
+    "sources": [
+      "gemini",
+      "ocr"
+    ],
+    "models": [
+      "gemini-3-flash-preview",
+      null
+    ],
+    "rows": 2
+  },
+  {
+    "filename": "Man House Manmadhan.pdf",
+    "sources": [
+      "ocr"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "Manoharan K.pdf",
+    "sources": [
+      "pdf-text"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "Manoj Kumar Nigam.pdf",
+    "sources": [
+      "gemini",
+      "ocr",
+      "openrouter"
+    ],
+    "models": [
+      "gemini-3.8-flash",
+      "google/gemma-4-31b-it:free",
+      null
+    ],
+    "rows": 3
+  },
+  {
+    "filename": "Manoj Kumar Sharma.pdf",
+    "sources": [
+      "gemini",
+      "ocr"
+    ],
+    "models": [
+      "gemini-3-flash-preview",
+      null
+    ],
+    "rows": 2
+  },
+  {
+    "filename": "Manoj Tiwari  .pdf",
+    "sources": [
+      "gemini",
+      "ocr"
+    ],
+    "models": [
+      "gemini-3.7-flash",
+      null
+    ],
+    "rows": 2
+  },
+  {
+    "filename": "Manthara Velayudhan.pdf",
+    "sources": [
+      "pdf-text"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "Md Nazir.pdf",
+    "sources": [
+      "gemini",
+      "ocr",
+      "openrouter"
+    ],
+    "models": [
+      "gemini-3.7-flash",
+      "google/gemma-4-31b-it:free",
+      null
+    ],
+    "rows": 3
+  },
+  {
+    "filename": "Mohd Hamid.pdf",
+    "sources": [
+      "gemini",
+      "ocr",
+      null
+    ],
+    "models": [
+      "gemini-3.7-flash",
+      null
+    ],
+    "rows": 3
+  },
+  {
+    "filename": "Muraleedharan Koncherillam.pdf",
+    "sources": [
+      "openrouter",
+      "pdf-text"
+    ],
+    "models": [
+      "google/gemma-4-31b-it:free",
+      null
+    ],
+    "rows": 2
+  },
+  {
+    "filename": "Muralidharan.pdf",
+    "sources": [
+      "pdf-text"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "N Jayarajan.pdf",
+    "sources": [
+      "ocr"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "N K Premachandran  .pdf",
+    "sources": [
+      "ocr"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "N Keshava Nayak.pdf",
+    "sources": [
+      "pdf-text"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "N S K Puram Sasikumar.pdf",
+    "sources": [
+      "ocr"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "N. Raghavan.pdf",
+    "sources": [
+      "ocr"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "Nand Ram Bagri.pdf",
+    "sources": [
+      "gemini",
+      "ocr"
+    ],
+    "models": [
+      "gemini-3.7-flash",
+      null
+    ],
+    "rows": 2
+  },
+  {
+    "filename": "Nandavanam Suseelan.pdf",
+    "sources": [
+      "ocr"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "Narayana Kumar.pdf",
+    "sources": [
+      "ocr"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "Naseef Ali Mullappalli.pdf",
+    "sources": [
+      "pdf-text"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "P Krishnammal.pdf",
+    "sources": [
+      "ocr",
+      "openrouter"
+    ],
+    "models": [
+      "google/gemma-4-31b-it:free",
+      null
+    ],
+    "rows": 2
+  },
+  {
+    "filename": "P O Peter.pdf",
+    "sources": [
+      "ocr",
+      "openrouter"
+    ],
+    "models": [
+      "google/gemma-4-31b-it:free",
+      null
+    ],
+    "rows": 2
+  },
+  {
+    "filename": "P Radhakrishnan.pdf",
+    "sources": [
+      "ocr"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "P.C. Narayanan.pdf",
+    "sources": [
+      "ocr"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "P.K. Sajeevan.pdf",
+    "sources": [
+      "ocr"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "P.R Krishnankutty.pdf",
+    "sources": [
+      "ocr",
+      "openrouter"
+    ],
+    "models": [
+      "google/gemma-4-31b-it:free",
+      null
+    ],
+    "rows": 2
+  },
+  {
+    "filename": "Pannian Ravindran.pdf",
+    "sources": [
+      "ocr",
+      "openrouter"
+    ],
+    "models": [
+      "google/gemma-4-31b-it:free",
+      null
+    ],
+    "rows": 2
+  },
+  {
+    "filename": "Pradeep Kottarakkara.pdf",
+    "sources": [
+      "ocr"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "Prakash P L.pdf",
+    "sources": [
+      "pdf-text"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "Prakash S.pdf",
+    "sources": [
+      "pdf-text"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "Praphul Krishnan.pdf",
+    "sources": [
+      "pdf-text"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "Praseetha Azhikode.pdf",
+    "sources": [
+      "ocr",
+      "openrouter"
+    ],
+    "models": [
+      "google/gemma-4-31b-it:free",
+      null
+    ],
+    "rows": 2
+  },
+  {
+    "filename": "Prathapan(Thrissur).pdf",
+    "sources": [
+      "ocr",
+      "openrouter"
+    ],
+    "models": [
+      "google/gemma-4-31b-it:free",
+      null
+    ],
+    "rows": 2
+  },
+  {
+    "filename": "Prathapan.pdf",
+    "sources": [
+      "ocr"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "Praveen Khandelwal.pdf",
+    "sources": [
+      "gemini",
+      "ocr"
+    ],
+    "models": [
+      "gemini-3.7-flash",
+      null
+    ],
+    "rows": 2
+  },
+  {
+    "filename": "Prem Singh.pdf",
+    "sources": [
+      "gemini",
+      "ocr"
+    ],
+    "models": [
+      "gemini-3.7-flash",
+      null
+    ],
+    "rows": 2
+  },
+  {
+    "filename": "Premachandran Nair.pdf",
+    "sources": [
+      "ocr"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "Prithvi Nath Singh.pdf",
+    "sources": [
+      "gemini",
+      "ocr"
+    ],
+    "models": [
+      "gemini-3-flash-preview",
+      null
+    ],
+    "rows": 2
+  },
+  {
+    "filename": "Prof C Raveendranath.pdf",
+    "sources": [
+      "ocr"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "Pyush Narula.pdf",
+    "sources": [
+      "ocr"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "Rahul Gandhi  .pdf",
+    "sources": [
+      "ocr"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "Rajeev Chandrasekhar.pdf",
+    "sources": [
+      "ocr"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "Rajesh K.pdf",
+    "sources": [
+      "ocr"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "Rajesh M.pdf",
+    "sources": [
+      "ocr",
+      "openrouter"
+    ],
+    "models": [
+      "google/gemma-4-31b-it:free",
+      null
+    ],
+    "rows": 2
+  },
+  {
+    "filename": "Rajeswari K.R.pdf",
+    "sources": [
+      "ocr"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "Rajmohan Unnithan  .pdf",
+    "sources": [
+      "ocr"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "Ramachandran Bavileeri.pdf",
+    "sources": [
+      "ocr"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "Ramvir Singh Bidhuri  .pdf",
+    "sources": [
+      "ocr",
+      "openrouter"
+    ],
+    "models": [
+      "google/gemma-4-31b-it:free",
+      null
+    ],
+    "rows": 2
+  },
+  {
+    "filename": "Ramya Haridas.pdf",
+    "sources": [
+      "ocr"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "Roby Mattappally.pdf",
+    "sources": [
+      "ocr"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "Rohit Krishnan.pdf",
+    "sources": [
+      "ocr"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "Rosilin Chacko.pdf",
+    "sources": [
+      "ocr"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "S Mini.pdf",
+    "sources": [
+      "ocr"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "Saji Alias Shaji.pdf",
+    "sources": [
+      "ocr"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "Santhosh K.pdf",
+    "sources": [
+      "pdf-text"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "Santhosh Palathumpadan.pdf",
+    "sources": [
+      "ocr"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "Santhosh Pulickal.pdf",
+    "sources": [
+      "ocr",
+      "openrouter"
+    ],
+    "models": [
+      "google/gemma-4-31b-it:free",
+      null
+    ],
+    "rows": 2
+  },
+  {
+    "filename": "Satheesh Shenoi.pdf",
+    "sources": [
+      "pdf-text"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "Sathyan K.P.pdf",
+    "sources": [
+      "ocr"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "Shafi Parambil  .pdf",
+    "sources": [
+      "ocr"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "Shafi T P.pdf",
+    "sources": [
+      "pdf-text"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "Shafi.pdf",
+    "sources": [
+      "pdf-text"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "Shajahan Abdul Azees.pdf",
+    "sources": [
+      "ocr"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "Shashi Tharoor  .pdf",
+    "sources": [
+      "ocr"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "Shylaja.pdf",
+    "sources": [
+      "ocr"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "Sidheek Iruppassery.pdf",
+    "sources": [
+      "ocr"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "Subran K R.pdf",
+    "sources": [
+      "ocr"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "Sukumari M.pdf",
+    "sources": [
+      "pdf-text"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "Sunil Alancheril.pdf",
+    "sources": [
+      "ocr"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "Sunilkumar.pdf",
+    "sources": [
+      "ocr"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "Surabhi S.pdf",
+    "sources": [
+      "ocr"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "Suresh Gopi  .pdf",
+    "sources": [
+      "ocr"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "Suresh Nooranad.pdf",
+    "sources": [
+      "ocr"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "Sylaja P.pdf",
+    "sources": [
+      "ocr",
+      "openrouter"
+    ],
+    "models": [
+      "google/gemma-4-31b-it:free",
+      null
+    ],
+    "rows": 2
+  },
+  {
+    "filename": "T S Chandran.pdf",
+    "sources": [
+      "ocr"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "T. Krishnan.pdf",
+    "sources": [
+      "pdf-text"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "Thrissur Nazeer.pdf",
+    "sources": [
+      "openrouter",
+      "pdf-text"
+    ],
+    "models": [
+      "google/gemma-4-31b-it:free",
+      null
+    ],
+    "rows": 2
+  },
+  {
+    "filename": "V Joy.pdf",
+    "sources": [
+      "pdf-text"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "V K Sreekandan  .pdf",
+    "sources": [
+      "ocr"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "V Muraleedharan.pdf",
+    "sources": [
+      "ocr",
+      "openrouter"
+    ],
+    "models": [
+      "google/gemma-4-31b-it:free",
+      null
+    ],
+    "rows": 2
+  },
+  {
+    "filename": "V. Vaseef.pdf",
+    "sources": [
+      "ocr"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "Vayalar Jayakumar.pdf",
+    "sources": [
+      "ocr"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "Vayalar Rajeevan.pdf",
+    "sources": [
+      "ocr"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "Vinod.pdf",
+    "sources": [
+      "ocr"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  },
+  {
+    "filename": "Yogender Chandoliya  .pdf",
+    "sources": [
+      "ocr"
+    ],
+    "models": [
+      null
+    ],
+    "rows": 1
+  }
+]

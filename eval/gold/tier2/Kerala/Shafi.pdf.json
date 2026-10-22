@@ -1,0 +1,22 @@
+{
+  "file": "Shafi.pdf",
+  "state": "Kerala",
+  "labeledBy": "agent-manual-read",
+  "labeledAt": "2026-10-09",
+  "form26Found": true,
+  "fields": {
+    "name": null,
+    "age": null,
+    "gender": null,
+    "fatherName": null,
+    "occupation": null,
+    "constituency": null,
+    "state": "Kerala",
+    "citizenship": null,
+    "educationalQualification": null,
+    "criminalCases": null,
+    "totalAssets": null,
+    "totalLiabilities": null
+  },
+  "notes": "Form 26 present and notarized (K.M. Ramdas, B.Sc LL.B, Reg. 6282/08, Kozhikode; expiry 05-08-2028). Document is mostly handwritten; only pre-printed Malayalam labels and stamp text are legible, so nearly every candidate-entered field is null. name: Part A item (2) name value is handwritten and OCRs to garbage -> null. age: declaration 'resident aged ..' is handwritten/unreadable -> null. fatherName/occupation/constituency: handwritten/unreadable -> null. PIN recovered as 679582 (Part A item (2) address). Phone partly legible; email fragment resembles shafiparambil3090@gmail.com (not reliable enough to assert). educationalQualification: Part A item (10) and Part B row 11 values handwritten/unreadable -> null. criminalCases: item 5/6 tables handwritten and overlapped by notary stamp; count not verifiable -> null. totalAssets/totalLiabilities: Part B columns (self/spouse/HUF/dependents) handwritten and unreadable -> null. Verification page p14 contains clean English 'Literate deponent ... affirmed and signed before me' and marks the deponent as literate. gender/citizenship not fields in Form 26."
+}

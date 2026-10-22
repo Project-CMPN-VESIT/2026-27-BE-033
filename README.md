@@ -225,7 +225,6 @@ Single-image requests use the `gundam` mode (`image_size=640`); multi-page/PDF r
 │           ├── parser.ts   # Regex parser for OCR text
 │           ├── pdf.ts      # PDF page rendering
 │           └── privacy.ts  # PAN / PII redaction
-├── guidelines/             # Project guidelines
 ├── colab/                  # Google Colab notebook for running Unlimited-OCR on a free GPU
 ├── Candidate Affidavits/   # Raw affidavit source data (Excel)
 ├── drizzle.config.ts       # Drizzle Kit configuration

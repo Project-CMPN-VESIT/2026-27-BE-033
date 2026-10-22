@@ -1,0 +1,27 @@
+{
+  "file": "Muraleedharan Koncherillam.pdf",
+  "state": "Kerala",
+  "labeledBy": "agent-manual-read",
+  "labeledAt": "2026-10-09",
+  "form26Found": true,
+  "fields": {
+    "name": null,
+    "age": null,
+    "gender": "Male",
+    "fatherName": "ഭരത",
+    "occupation": null,
+    "constituency": null,
+    "state": "Kerala",
+    "citizenship": null,
+    "educationalQualification": null,
+    "criminalCases": 8,
+    "totalAssets": null,
+    "totalLiabilities": null
+  },
+  "notes": "Malayalam-format Form 26 affidavit (15 pages), Alappuzha notary stamp. fatherName='ഭരത' read from Part A item (1) preamble '...വയസ്സുള്ള ഭരത..., മകൻ' (possibly truncated; the printed dots follow the name). Gender Male from 'താമസക്കാരനായ' masculine conjunct + 'മകൻ' paternal phrasing. name: handwritten Malayalam name in preamble and Part B illegible to OCR, set null. age: handwritten age between printed dots reads as '5/05'/'0'/'38'/'7073' - ambiguous, set null. occupation/constituency/education: handwritten values illegible (constituency value shows digit '6'-ish but unreliable), set null. state 'Kerala' inferred from form structure (Malayalam Kerala affidavit); the printed value itself not directly OCR-read. criminalCases=8: Part B pending-case count reads '8' consistently (EasyOCR text conf 0.99 AND digit pass conf 1.0 on two crop sizes); note Part A item (5) detail page (p06) appears to show a single case block - some discrepancy - and convicted-count cell (p14 row 6) reads '6'/'8' ambiguous (set as part of criminalCases note; whether convictions are 0 or more is unclear though p07 shows a filled conviction table). totalAssets/totalLiabilities: Part B asset and liability (incl. both '(ആകെ)' total rows) handwritten values unreadable by all OCR passes (movable/immovable rows read as '92'/'601'/'984' noise and NIL-like fragments), set null.",
+  "difficulties": [
+    "Heavy handwriting; Malayalam cells and amount digits not reliably OCR-able.",
+    "Pending-case count '8' (strong EasyOCR) conflicts with a seemingly single-case detail table - flagged.",
+    "Model cannot view images, so no visual confirmation path."
+  ]
+}

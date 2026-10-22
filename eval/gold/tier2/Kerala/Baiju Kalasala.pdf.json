@@ -1,0 +1,23 @@
+{
+  "file": "Baiju Kalasala.pdf",
+  "state": "Kerala",
+  "labeledBy": "agent-manual-read",
+  "labeledAt": "2026-10-09",
+  "form26Found": true,
+  "fields": {
+    "name": "BAIJU RAJAN",
+    "age": 52,
+    "gender": "Male",
+    "fatherName": "RAJAN",
+    "occupation": "Self - ARTIST",
+    "constituency": "16 MAVELIKARA (SC)",
+    "state": "KERALA",
+    "citizenship": null,
+    "educationalQualification": "SSLC (SECONDARY SCHOOL LEAVING CERTIFICATE) - CHATHIYARA HIGH SCHOOL, THAMARAKULAM - 1987",
+    "criminalCases": 7,
+    "totalAssets": "292138",
+    "totalLiabilities": "0"
+  },
+  "notes": "English-format typed Form 26 (Part B pages). All typed values machine-readable. Name read from Part B (Shri. BAIJU RAJAN). criminalCases=7 stated in Part B pending-cases row. totalAssets=292138 (movable + immovable totals per Part B, typed figures). totalLiabilities='0' (typed NIL entries including grand-total row). citizenship not present as a field in this form, set null. Values and notes cross-checked against Part A typed detail in earlier session.",
+  "difficulties": []
+}

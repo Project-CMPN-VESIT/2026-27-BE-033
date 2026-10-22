@@ -1,0 +1,27 @@
+{
+  "file": "Abdulsalam.pdf",
+  "state": "Kerala",
+  "labeledBy": "agent-manual-read",
+  "labeledAt": "2026-10-09",
+  "form26Found": true,
+  "fields": {
+    "name": "Abdulsalam",
+    "age": null,
+    "gender": "Male",
+    "fatherName": null,
+    "occupation": null,
+    "constituency": null,
+    "state": "Kerala",
+    "citizenship": null,
+    "educationalQualification": null,
+    "criminalCases": 1,
+    "totalAssets": "0",
+    "totalLiabilities": "0"
+  },
+  "notes": "Malayalam-format Form 26 affidavit (13 pages), Malappuram district (per notary stamp). Name: Part B row 1 printed in Malayalam as 'ശ്രീ. ...'; Malayalam text not reliably OCR-able, Latin spelling 'Abdulsalam' taken from the notarised signature ('Bbdlel salam' / 'Abdul Salam' per OCR) and matching the PDF filename. Gender 'Male' from 'ശ്രീ' (Mr.) prefix in Part B. Age: handwritten age field illegible (OCR variants 95/99/59/8), set null. Father name, occupation, constituency, education: handwritten values not OCR-able at available resolution, set null (occupation value cell on p10 OCR-clears empty; education value on p13 unreadable; constituency number possibly '6' or '07' - unreliable). criminalCases=1: Part A item (5) table shows a single case block (Kondotty area PS per earlier read); the Part B pending-case count cell is scratched/illegible ('68 m'/'680'/'G\\' readings) but affirmation text states no cases beyond those listed. totalAssets='0': Part B p12 asset summary rows (movable total, self-acquired immovable purchase price, post-purchase development cost, self-acquired market value, inherited market value) read uniformly as 'NIL'-type tokens ('NIC'/'NO'/'Nv' etc., conf ~0.9) across all columns; one cell read '784' ambiguously. totalLiabilities='0': Part B p13 liability rows (incl. both grand-total '(ആകെ)' rows) read uniformly as NIL-type tokens, and affirmation text states no assets/liabilities for self/spouse/dependents beyond the listed ones ('ആസ്തിയോ ബാദ്ധ്യതയോ ഇല്ല').",
+  "difficulties": [
+    "Handwritten Malayalam values throughout; no clear OCR on name/father/occupation/education/age/constituency cells.",
+    "Pending-case count cell scratched; asset rows are a repeated NIL-like handwritten token that three engines could not fully disambiguate from 'NA'.",
+    "Model cannot view images, so transcription relied on tesseract(mal+eng)/EasyOCR(English)/digit-whitelist crops only."
+  ]
+}
