@@ -14,7 +14,12 @@
     "db:ocr:probe": "tsx --env-file=.env.local src/lib/ocrProbe.ts",
     "db:ocr:inspect": "tsx --env-file=.env.local src/lib/ocrInspect.ts",
     "db:ocr:repair": "tsx --env-file=.env.local src/lib/ocrRepair.ts",
-    "test": "tsx src/lib/ocr/vlm.test.ts"
+    "test": "tsx src/lib/ocr/vlm.test.ts",
+    "assistant:clean": "tsx src/lib/buildAssistantData.ts",
+    "test:assistant": "tsx --test src/lib/assistantTools.test.ts src/lib/assistantRoute.test.ts",
+    "test:dashboard": "tsx --test src/lib/dashboard.test.ts",
+    "test:auth": "tsx --test src/lib/auth.test.ts",
+    "auth:check-live": "tsx --env-file=.env.local src/lib/checkAuthLive.ts"
   },
   "dependencies": {
     "@emotion/react": "11.14.0",

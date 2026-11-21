@@ -239,3 +239,83 @@ The original UI design for this platform is available on Figma:
 ## License
 
 Private / educational project. See [ATTRIBUTIONS.md](./ATTRIBUTIONS.md) for third-party attributions.
+
+## AI Assistant
+
+The existing `/chat` page is the **AI Assistant** entry in the shared desktop/mobile navigation. It uses the same Next.js App Router, TypeScript, Tailwind cards, Lucide icons and shared UI controls as Candidate Verification and Candidate Comparison. No extra dependencies or database are needed.
+
+### Configure and run
+
+Set `ASSISTANT_API_KEY` (or the existing `GEMINI_API_KEY`) in `.env.local`. `ASSISTANT_MODEL` defaults to `gemini-3.5-flash-lite` and can be changed to a Gemini model supporting `generateContent` function calling. Keys stay in the server route; never use a `NEXT_PUBLIC_` variable. Restart the dev server after changing environment variables.
+
+```bash
+npm run assistant:clean
+npm run test:assistant
+npm run dev
+```
+
+Open `http://localhost:3000/chat`. An unconfigured assistant displays a configuration error; it does not substitute invented demo answers.
+
+### Source data and cleaning
+
+The default source is `../Candidate Affidavits/Candidate Detailed Info.xlsx`, the original workbook at the repository root. There is also a different copy at `Candidate Affidavits/Candidate Detailed Info (1).xlsx` used by verification. They each have 999 records but contain some different spellings and education values; they are not silently merged. Choose a different source explicitly with:
+
+```bash
+npm run assistant:clean -- "Candidate Affidavits/Candidate Detailed Info (1).xlsx"
+```
+
+The script writes `src/lib/data/candidates_clean.json` and source metadata in `assistant_source.json`. It trims text and repeated whitespace, merges case variants within education/party/constituency labels, converts assets and liabilities to exact integer rupees, and derives `net_worth` (`netWorth` is a compatibility alias). `id` preserves the sheet's Sr.no; IDs are not assumed to be contiguous. Constituency original labels remain in `constituencyRaw`, SC/ST becomes `reservation`, and `constituencyKey` supports normalized lookup. Only named required columns are read; extra columns are ignored. Invalid money, duplicate IDs and missing required values fail loudly. No state is inferred because the sheet has no state column. Rebuild/restart after changing the generated JSON.
+
+### API and clarification
+
+`POST /api/assistant` accepts `{ "question": "Average age of BJP candidates?" }` and returns `{ answer, context }`. Send the returned opaque `context` with the next question to continue. It is signed, expires after one hour, keeps up to 12 messages and can be reset with **New chat**. Set a stable `AUTH_SECRET` across production instances (otherwise the API key signs context). The frontend keeps the token only in memory.
+
+Gemini chooses from `search_candidates`, `get_candidate`, and `aggregate`. TypeScript validates every tool argument and executes filtering, numerical sorting, counts and aggregates on bundled JSON. Each response includes exact rupees alongside Indian money formatting. Names with typos/partial matches and duplicate names require confirmation; unmatched or partial constituency/education/party labels return suggestions. Exact names or labels can then be used in a follow-up. Results are capped at 10 with total counts. Final factual answers require successful tool results in the current turn; unsupported questions and clarification questions can be answered without a lookup. Neutrality and language rules are in the server system prompt, and a source/declared-cases disclaimer is appended in code.
+
+The endpoint supports parallel and sequential tool calls within a bounded budget, preserves Gemini thought signatures, limits questions to 300 characters, bounds request bytes and provider time, and returns safe errors. The UI includes six examples, loading feedback, accessible chat/error states, retry and a new-chat control.
+
+Rate limiting is basic: 10 requests/minute/IP in process memory with expired-entry eviction. Production replicas need a shared limiter (for example Redis) and a trusted reverse proxy that overwrites forwarding headers. Signed context is tamper-resistant, not encrypted; avoid putting sensitive personal information in questions. The sheet and prompt constrain answers, but live model behavior still needs manual checks; this implementation does not claim that arbitrary model wording is guaranteed accurate.
+
+### Accuracy checks
+
+`src/lib/assistantTools.test.ts` contains 15 natural-language sample questions with fixed expected answers independently checked against the original XLSX, plus full-row money reconciliation and ambiguity/validation tests. These check calculations directly without a paid LLM call. If the source workbook is intentionally changed, review and update the frozen answers rather than regenerating them automatically.
+
+`src/lib/assistantRoute.test.ts` uses a mocked Gemini provider to check the endpoint, multiple tools, signed follow-ups, clarification, no-tool factual-answer blocking, errors, input bounds and rate limiting. To check live model interpretation manually, ask the 15 sample questions in the UI and compare with their expected values; also try `Who will win?`, `Tell me about Kumar`, `Candidates in Mumbai`, and a follow-up such as `And their liabilities?`. Gemini function calling follows the [official API documentation](https://ai.google.dev/gemini-api/docs/function-calling).
+
+### Troubleshooting assistant connectivity
+
+The development server must be allowed to make outbound HTTPS requests to Gemini. A server launched inside a restricted execution sandbox can serve the UI while every AI request fails with a network access error. Run `npm run dev` from a terminal with network access, or allow network access when launching it through an agent. The endpoint distinguishes network, timeout, provider authentication, model availability and quota errors; server logs contain only safe error codes/statuses, not provider payloads or API keys.
+
+Past-winner lookups use only an explicit trailing `Winner` marker in the sheet candidate names (`search_candidates` filter `winner: true`). For example, Thane has Naresh Ganpat Mhaske marked Winner. Answers describe that sheet marker; they do not infer an election year, current office, vote count, margin or future outcome. Candidates without the marker are not automatically classified as losers.
+
+Delhi queries cover all seven constituency labels containing Delhi in this sheet (70 candidates); New Delhi remains a single constituency (10 candidates). For example, 33 Delhi candidates have assets strictly above Rs 1 crore. Other partial constituency labels such as Mumbai still require confirmation. Clarification tool results end the turn immediately, so a model cannot silently drop a filter after receiving an ambiguity response.
+
+When tools have already returned exact data, a malformed, truncated, timed-out or unavailable final LLM response falls back to a plain-code rendering of those tool results. This fallback does not parse questions or invent queries and still shows result totals, up to 10 records, and the source disclaimer. If the initial model lookup itself cannot run, the service error is still displayed.
+
+### Assistant languages
+
+The assistant has four explicit response modes: **English**, **Hinglish** (Hindi phrasing in Roman letters) and **हिन्दी** (Hindi vocabulary in Devanagari). The selected mode applies to the next reply without resetting conversation context and is remembered in browser local storage when available. Before a manual choice, input script/wording can select an initial mode. Welcome text, examples, input prompts, controls and source disclaimers follow the selected language.
+
+Send `language: "en"`, `"hinglish"`, `"hi"`, or `"mr"` with `POST /api/assistant`. Invalid values return 400. Clients omitting the field get language detection from the question. Explicit selection overrides the current question's language and previous conversation language. The server adds a language-specific system instruction and checks the response script. Hindi requires Devanagari instead of Roman Hindi. Clarifications and code-rendered fallback answers use localized vocabulary and rupee units; unfamiliar proper names retain their exact source spelling in fallback output to avoid inventing transliterations.
+
+
+Marathi uses its own system instruction, localized examples, controls, source note, clarification and fallback wording. The selector remembers Marathi just like the other modes. Explicit preference takes priority; older clients without a language field can detect common Marathi wording separately from Hindi. Tool lookups accept a curated set of native-label aliases such as ????/THANE, ????/PUNE, ????/BJP and ??????/Graduate; ambiguous ????? still asks for a constituency. Unknown proper names retain source spelling in fallback output.
+
+General sheet queries now support inclusive filters for liabilities and net worth (including negative values), plus SC/ST/no-tag constituency reservation filters. Overall summaries use `aggregate` with `group_by: "all"`. Added metrics cover total assets, average/total liabilities, average/total net worth, minimum/maximum age, average declared cases, candidates declaring cases and their percentage. Existing party/constituency/education grouping, rankings and candidate-profile tools remain available. SC/ST refers to the recorded constituency label, not candidate caste; missing tags are not treated as independently verified reservation status. Information absent from the sheet still requires a clear limitation or clarification.
+
+
+## Dashboard and appearance
+
+The shared application shell has a navy sidebar, breadcrumb header, responsive mobile navigation, keyboard focus indicators and a skip-to-content link. The dashboard combines a hero, four sheet-based summary cards, quick links, a paginated candidate directory, party-count bars and a source-context panel. It uses initials instead of external photo requests and presents declared figures directly from the cleaned sheet. The dashboard does not depend on the database: `GET /api/dashboard` reads bundled cleaned JSON, supports search, constituency and quick filters, and returns nine candidates per page. Existing verification, comparison, assistant, profile and authentication routes remain available.
+
+Run `npm run test:dashboard` for summary reconciliation, search, filters, sorting, pagination and empty-state checks.
+
+## Login and accounts
+
+`/signup` creates a database account and signs the user in; `/login` verifies saved credentials and opens the dashboard. Usernames are case-sensitive (3-64 letters, digits, dots, underscores or hyphens for new accounts). Registration validates name, integer age 1-120, an 8-128-character password and matching confirmation on the server. The form handles pending requests, repeat submissions, server errors and network failures. The workspace header refreshes its account state after navigation and provides Sign out.
+
+Passwords use salted scrypt hashes. Session cookies are HTTP-only, SameSite=Lax, Secure in production and expire after 30 days; the signed token also enforces expiry on the server. Login, registration and session responses use Cache-Control: no-store. Basic per-process rate limiting caps valid-shaped login/registration attempts at 20 per IP/action per 10 minutes; production replicas need a shared limiter and a trusted proxy for forwarding headers.
+
+A database with the `users` table is required. Set a strong, stable `AUTH_SECRET` in production and whenever sessions should survive development-server restarts. Development without that variable uses a randomly generated process secret, retained through hot reloads. Old session cookies from the previous token format require signing in again. Candidate information remains publicly accessible; adding login does not restrict the existing public pages. Password recovery is not configured because the account currently has no verified recovery channel. Placeholder Terms/Privacy buttons have been removed instead of presenting nonfunctional legal controls.
+
+Run `npm run test:auth` for isolated validation, hashing, session, duplicate-account, error-handling and rate-limit tests. With the local dev server running and `.env.local` configured, `npm run auth:check-live` exercises real registration, login, session cookies and logout against localhost. It creates one randomly named synthetic account and removes exactly that account afterward; it prints no passwords or cookies. `tsx --env-file=.env.local src/lib/checkAuthLive.ts --check-only` checks access to the users table without reading account records.

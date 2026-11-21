@@ -14,7 +14,7 @@ import {
   Legend,
   ResponsiveContainer,
 } from "recharts";
-import { TrendingUp, AlertCircle, Target, Filter, MapPin, Gavel, Wallet } from "lucide-react";
+import { TrendingUp, AlertCircle, Target, Filter, MapPin, Gavel, Wallet, BarChart3 } from "lucide-react";
 import { Button } from "../components/ui/button";
 
 interface TopOffender {
@@ -89,11 +89,15 @@ export function Insights() {
   return (
     <div className="space-y-6">
       {/* Header */}
-      <div>
+      <div className="insights-page-heading">
+        <span className="insights-heading-icon"><BarChart3 size={26} /></span>
+        <div>
+        <p className="section-eyebrow">EXPLORE THE PATTERNS</p>
         <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 mb-2">Data Insights</h1>
         <p className="text-gray-600">
-          Real analysis of {m ? m.total.toLocaleString() : "—"} candidates across Delhi &amp; Kerala
+          {m ? `${m.total.toLocaleString()} candidate records` : "Candidate records"} — a closer look at declared assets, cases and profiles.
         </p>
+        </div>
       </div>
 
       {/* Filters */}

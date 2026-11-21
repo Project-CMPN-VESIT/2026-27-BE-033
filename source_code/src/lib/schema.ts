@@ -38,5 +38,15 @@ export const affidavitScans = pgTable("affidavit_scans", {
   createdAt: timestamp("created_at").defaultNow().notNull(),
 });
 
+export const users = pgTable("users", {
+  id: serial("id").primaryKey(),
+  username: text("username").notNull().unique(),
+  passwordHash: text("password_hash").notNull(),
+  name: text("name").notNull(),
+  age: integer("age").notNull(),
+  createdAt: timestamp("created_at").defaultNow().notNull(),
+});
+
 export type Candidate = typeof candidates.$inferSelect;
 export type AffidavitScan = typeof affidavitScans.$inferSelect;
+export type User = typeof users.$inferSelect;

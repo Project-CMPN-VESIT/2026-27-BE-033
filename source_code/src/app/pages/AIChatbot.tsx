@@ -1,262 +1,322 @@
-"use client";
-import { useEffect, useState } from "react";
-import { Send, FileText, Shield, BarChart3 } from "lucide-react";
+﻿"use client";
+import { useEffect, useRef, useState } from "react";
+import { Send, AlertCircle, FileText, Shield, BarChart3, Sparkles } from "lucide-react";
 import { Button } from "../components/ui/button";
 import { Input } from "../components/ui/input";
+import source from "@/lib/data/assistant_source.json";
+import { ASSISTANT_COPY, LANGUAGE_OPTIONS, detectLanguage, isAssistantLanguage, type AssistantLanguage } from "@/lib/assistantLanguage";
+
+// --- Types -------------------------------------------------------------------
 
 interface Message {
   id: string;
   role: "user" | "assistant";
   content: string;
   timestamp: string;
+  language?: AssistantLanguage;
 }
 
-interface ScanContext {
-  parsed?: Record<string, unknown>;
-  source?: string;
-}
+// --- Constants ---------------------------------------------------------------
 
-const initialMessage: Message = {
-  id: "1",
+const MAX_CHARS = 300;
+
+const WELCOME_MESSAGE: Message = {
+  id: "welcome",
   role: "assistant",
   content:
-    "Welcome to the Chunav Bodh AI Assistant. I am designed to provide you with verified, fact-based information about electoral candidates, their public records, credibility assessments, and manifesto tracking. All responses are derived from official government sources and public databases. How may I assist you today?",
-  timestamp: new Date().toISOString(),
+    ASSISTANT_COPY.en.welcome,
+  timestamp: "",
 };
 
-const formalPrompts = [
-  "What metrics are used to calculate candidate credibility scores?",
-  "Provide comparative analysis of candidates in Mumbai North constituency",
-  "Explain the methodology for tracking manifesto promise fulfillment",
-  "Which government sources are used for candidate data verification?",
-  "Summarize my scanned affidavit",
-];
+// --- Component ---------------------------------------------------------------
 
 export function AIChatbot() {
-  const [messages, setMessages] = useState<Message[]>([initialMessage]);
+  const [messages, setMessages] = useState<Message[]>([WELCOME_MESSAGE]);
   const [input, setInput] = useState("");
-  const [isProcessing, setIsProcessing] = useState(false);
-  const [scanContext, setScanContext] = useState<ScanContext | null>(null);
+  const [isLoading, setIsLoading] = useState(false);
+  const [error, setError] = useState("");
+  const [context, setContext] = useState<string | undefined>();
+  const [retryQuestion, setRetryQuestion] = useState("");
+  const [language, setLanguage] = useState<AssistantLanguage>("en");
+  const explicitLanguage = useRef(false);
+  const sendingRef = useRef(false);
+  const bottomRef = useRef<HTMLDivElement>(null);
+  const inputRef = useRef<HTMLInputElement>(null);
+  const copy = ASSISTANT_COPY[language];
 
   useEffect(() => {
-    const keys = Object.keys(localStorage).filter((key) => key.startsWith("affidavit-scan-"));
-    const latest = keys.at(-1);
-    if (latest) {
-      try { setScanContext(JSON.parse(localStorage.getItem(latest) ?? "null")); } catch { /* ignore malformed local context */ }
-    }
+    try {
+      const saved = localStorage.getItem("assistant-language");
+      if (isAssistantLanguage(saved)) { explicitLanguage.current = true; setLanguage(saved); }
+    } catch { /* The selector also works when browser storage is disabled. */ }
   }, []);
 
-  const handleSend = (text?: string) => {
-    const messageText = text || input;
-    if (!messageText.trim()) return;
+  useEffect(() => {
+    setMessages(prev => prev.length === 1 && prev[0].id === "welcome" ? [{ ...WELCOME_MESSAGE, content: ASSISTANT_COPY[language].welcome, language }] : prev);
+  }, [language]);
 
-    const userMessage: Message = {
+  const chooseLanguage = (value: AssistantLanguage) => {
+    explicitLanguage.current = true;
+    setLanguage(value);
+    try { localStorage.setItem("assistant-language", value); } catch { /* Optional preference storage. */ }
+  };
+
+  // Auto-scroll to latest message
+  useEffect(() => {
+    bottomRef.current?.scrollIntoView({ behavior: "smooth" });
+  }, [messages, isLoading]);
+
+  const sendQuestion = async (text: string, isRetry = false) => {
+    const question = text.trim();
+    if (!question || sendingRef.current) return;
+    if (question.length > MAX_CHARS) {
+      setError(language === "mr" ? `कृपया प्रश्न ${MAX_CHARS} अक्षरांपर्यंत ठेवा.` : language === "hi" ? `कृपया प्रश्न ${MAX_CHARS} अक्षरों तक रखें।` : language === "hinglish" ? `Kripya sawaal ${MAX_CHARS} characters tak rakhiye.` : `Please keep your question under ${MAX_CHARS} characters.`);
+      return;
+    }
+
+    setError("");
+    sendingRef.current = true;
+    const userMsg: Message = {
       id: Date.now().toString(),
       role: "user",
-      content: messageText,
+      content: question,
       timestamp: new Date().toISOString(),
+      language,
     };
-
-    setMessages((prev) => [...prev, userMessage]);
+    if (!isRetry) setMessages(prev => [...prev, userMsg]);
     setInput("");
-    setIsProcessing(true);
+    setIsLoading(true);
 
-    setTimeout(() => {
-      const aiResponse: Message = {
+    try {
+      const res = await fetch("/api/assistant", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ question, context, language }),
+        signal: AbortSignal.timeout(60000),
+      });
+      const data = await res.json() as { answer?: string; error?: string; context?: string };
+      if (!res.ok || data.error) {
+        throw new Error(data.error ?? `Server error ${res.status}`);
+      }
+      const aiMsg: Message = {
         id: (Date.now() + 1).toString(),
         role: "assistant",
-        content: getAIResponse(messageText, scanContext),
+        content: data.answer ?? "No answer received.",
         timestamp: new Date().toISOString(),
+        language,
       };
-      setMessages((prev) => [...prev, aiResponse]);
-      setIsProcessing(false);
-    }, 1800);
+      setMessages(prev => [...prev, aiMsg]);
+      setContext(data.context);
+      setRetryQuestion("");
+    } catch (e) {
+      setError(e instanceof Error ? e.message : "Something went wrong. Please try again.");
+      setRetryQuestion(question);
+    } finally {
+      setIsLoading(false);
+      sendingRef.current = false;
+      inputRef.current?.focus();
+    }
   };
 
-  const getAIResponse = (query: string, context: ScanContext | null): string => {
-    const lowerQuery = query.toLowerCase();
-
-    if ((lowerQuery.includes("scan") || lowerQuery.includes("affidavit")) && context?.parsed) {
-      const fields = Object.entries(context.parsed)
-        .filter(([key, value]) => key !== "rawText" && value !== undefined)
-        .map(([key, value]) => `- ${key.replace(/([A-Z])/g, " $1")}: ${String(value)}`)
-        .join("\n");
-      return `Here is a summary of your latest scanned affidavit (${context.source ?? "OCR"}):\n\n${fields || "No structured fields were detected."}\n\nThis is an OCR-assisted summary. Verify every field against the original affidavit before relying on it.`;
+  const handleKeyDown = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    if (e.nativeEvent.isComposing) return;
+    if (e.key === "Enter" && !e.shiftKey) {
+      e.preventDefault();
+      sendQuestion(input);
     }
-
-    if (lowerQuery.includes("credibility") || lowerQuery.includes("metric")) {
-      return "The platform evaluates candidates using three primary metrics:\n\n1. **Criminal Risk Score (0-100%)**: Based on pending criminal cases, their severity, and legal status. Scores above 85% indicate clean records.\n\n2. **Financial Transparency (0-100%)**: Assessed through asset declaration completeness, consistency across years, and discrepancy analysis.\n\n3. **Performance Score (0-100%)**: Evaluated based on manifesto promise fulfillment, attendance records, and constituency development metrics.\n\nThese scores are aggregated into an overall Credibility Score, weighted equally across all three dimensions. All data is sourced from Election Commission of India (ECI) affidavits and verified government records.";
-    }
-
-    if (lowerQuery.includes("constituency") || lowerQuery.includes("near me") || lowerQuery.includes("area") || lowerQuery.includes("comparative") || lowerQuery.includes("comparison")) {
-      return "**Constituency Analysis: Mumbai North**\n\nTop-rated candidates based on credibility assessment:\n\n**1. Rajesh Kumar (Indian National Congress)**\n- Overall Credibility Score: 85/100\n- Criminal Risk Score: 92/100 (0 cases)\n- Financial Transparency: 88/100\n- Performance Score: 75/100\n- Declared Assets: ₹2.5 Crores\n- Education: MBA, IIM Ahmedabad\n- Experience: 15 years in public service\n\n**2. Priya Sharma (Bharatiya Janata Party)**\n- Overall Credibility Score: 78/100\n- Criminal Risk Score: 85/100 (1 minor case)\n- Financial Transparency: 80/100\n- Performance Score: 70/100\n- Declared Assets: ₹3.8 Crores\n- Education: B.Tech, IIT Delhi\n- Experience: 10 years in politics\n\n**3. Amit Patel (Aam Aadmi Party)**\n- Overall Credibility Score: 72/100\n- Criminal Risk Score: 70/100 (2 cases)\n- Financial Transparency: 75/100\n- Performance Score: 72/100\n- Declared Assets: ₹1.2 Crores\n- Education: MA Political Science\n- Experience: 8 years in activism\n\nFor detailed case information or asset breakdowns, please refer to individual candidate profiles.";
-    }
-
-    if (lowerQuery.includes("manifesto") || lowerQuery.includes("promise") || lowerQuery.includes("tracking") || lowerQuery.includes("methodology")) {
-      return "**Manifesto Accountability Framework**\n\nThe platform compares the ruling party's pre-election manifesto commitments against actual post-election performance and delivery.\n\n**Tracking Methodology:**\n\n1. **Baseline Establishment**: Specific, measurable promises are extracted from the official manifesto published during the election campaign (BJP 2022 manifesto).\n\n2. **Progress Verification**: Implementation status is tracked using:\n   - Official government department reports and progress documents\n   - Right to Information (RTI) Act responses\n   - Parliamentary records and ministerial statements\n   - Independent audit reports\n\n3. **Status Classification System**:\n   - **Fulfilled (100%)**: Promise completed as originally stated\n   - **Partially Fulfilled (50-99%)**: Significant progress but incomplete\n   - **In Progress (1-49%)**: Active implementation underway\n   - **Not Fulfilled (0%)**: No meaningful action taken\n\n4. **Current Scope**: Tracking 8 major promises from BJP's 2022 manifesto across infrastructure, education, healthcare, employment, transport, housing, and women empowerment sectors.\n\n**Overall Fulfillment Rate**: 62% (as of March 2026)\n\nFor category-wise breakdowns and detailed evidence sources, visit the Insights section.";
-    }
-
-    if (lowerQuery.includes("source") || lowerQuery.includes("data")) {
-      return "Chunav Bodh aggregates data from the following verified sources:\n\n**Primary Sources:**\n- Election Commission of India (ECI): Candidate affidavits, criminal case data, asset declarations\n- PRS Legislative Research: Performance tracking, attendance records\n- Official Government Departments: Ministry reports, progress data\n\n**Secondary Sources:**\n- Right to Information (RTI) responses\n- Supreme Court and High Court judgments\n- Verified fact-checking organizations\n- Mainstream media reports (cross-verified)\n\n**Data Integrity:**\nAll information undergoes a three-tier verification process before publication. Disputed or unverified claims are clearly marked. Last database update: March 2026.\n\nYou can view specific source citations on individual candidate profiles and insights.";
-    }
-
-    if (lowerQuery.includes("criminal") || lowerQuery.includes("clean record")) {
-      return "Candidates with the highest criminal risk scores (indicating cleaner records):\n\n**1. Sunita Rao** (Indian National Congress - Delhi Central)\n- Criminal Risk Score: 95/100\n- Pending Cases: 0\n- Background: 20 years in law and politics\n\n**2. Rajesh Kumar** (Indian National Congress - Mumbai North)\n- Criminal Risk Score: 92/100\n- Pending Cases: 0\n- Background: 15 years in public service\n\n**3. Priya Sharma** (Bharatiya Janata Party - Mumbai North)\n- Criminal Risk Score: 85/100\n- Pending Cases: 1 (defamation, non-cognizable)\n\nNote: Criminal risk score considers case severity, type (cognizable vs. non-cognizable), and status (convicted vs. pending). Data sourced from ECI affidavits filed in 2024.";
-    }
-
-    if (lowerQuery.includes("compare")) {
-      return "I can help you compare candidates on multiple dimensions. The platform offers side-by-side comparison of:\n\n- Credibility scores and sub-metrics\n- Criminal records and case details\n- Asset declarations and growth patterns\n- Educational qualifications and experience\n- Performance history and manifesto fulfillment\n\nPlease visit the Compare section to select specific candidates for detailed comparison, or let me know which candidates you'd like to compare, and I'll provide a summary.";
-    }
-
-    return "**Available Information Categories:**\n\nI can provide comprehensive, data-driven insights on the following topics:\n\n- **Candidate Profiles**: Credibility scores, criminal case records, asset declarations, educational qualifications, and professional experience\n- **Manifesto Accountability**: Ruling party's election promise fulfillment tracking and implementation status\n- **Data Verification**: Information about source credibility, verification protocols, and data update frequency\n- **Constituency Analytics**: Comparative candidate analysis for specific electoral constituencies\n- **Assessment Methodology**: Detailed explanation of credibility scoring algorithms and evaluation criteria\n\nPlease specify your area of interest, and I will provide detailed, evidence-based information sourced from official records.";
   };
+
+  const showExamples = messages.length <= 1 && !isLoading;
+  const charsLeft = MAX_CHARS - input.length;
 
   return (
-    <div className="max-w-5xl mx-auto space-y-6">
+    <div lang={language === "hinglish" ? "hi-Latn" : language} className="max-w-5xl mx-auto space-y-6">
       {/* Header */}
-      <div className="bg-gradient-to-br from-blue-600 to-blue-800 rounded-2xl p-6 sm:p-8 text-white">
-        <div className="flex items-center gap-4 mb-4">
-          <div className="w-14 h-14 bg-white/20 backdrop-blur rounded-xl flex items-center justify-center">
-            <Bot className="w-8 h-8 text-white" />
+      <div className="overflow-hidden rounded-2xl bg-gradient-to-br from-blue-900 via-blue-800 to-indigo-900 p-6 sm:p-8 text-white shadow-lg">
+        <div className="flex items-center gap-4">
+          <div className="w-14 h-14 bg-white/15 backdrop-blur rounded-xl flex items-center justify-center ring-1 ring-white/20 flex-shrink-0">
+            <Sparkles className="w-8 h-8 text-white" />
           </div>
           <div>
             <h1 className="text-2xl sm:text-3xl font-bold">Chunav Bodh AI Assistant</h1>
-            <p className="text-blue-100 text-sm mt-1">Data-Driven Electoral Intelligence | Verified Sources Only</p>
+            <p className="text-blue-100 text-sm mt-1">
+              English · Hinglish · हिन्दी · मराठी
+            </p>
           </div>
         </div>
       </div>
 
-      {/* Information Cards */}
+      {/* Info Cards */}
       <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
         <InfoCard
           icon={<Shield className="w-5 h-5" />}
-          title="Verified Data"
-          description="Sourced from ECI and government records"
+          title="Affidavit Data Only"
+          description="Answers use candidate affidavits as recorded in the sheet"
         />
         <InfoCard
           icon={<BarChart3 className="w-5 h-5" />}
-          title="Objective Analysis"
-          description="Fact-based credibility assessments"
+          title="Strictly Neutral"
+          description="Facts only — no voting advice, no party bias"
         />
         <InfoCard
           icon={<FileText className="w-5 h-5" />}
-          title="Transparent Sources"
-          description="All information is citation-backed"
+          title={`${source.count.toLocaleString("en-IN")} Candidates`}
+          description="Assets, liabilities, declared cases, age and education"
         />
       </div>
 
-      {/* Chat Interface */}
-      <div className="bg-white rounded-2xl shadow-sm border-2 border-gray-200">
-        {/* Messages Container */}
-        <div className="h-[550px] overflow-y-auto p-6 space-y-5 bg-gray-50">
-          {messages.map((message) => (
-            <MessageBubble key={message.id} message={message} />
+      <div className="rounded-xl border border-gray-200 bg-white p-4 shadow-sm">
+        <div className="flex flex-wrap items-center justify-between gap-3">
+          <p id="assistant-language-label" className="text-sm font-semibold text-[#1E3A8A]">{copy.language}</p>
+          <div role="group" aria-labelledby="assistant-language-label" className="flex flex-wrap gap-2">
+            {LANGUAGE_OPTIONS.map(option => (
+              <button key={option.value} type="button" lang={option.value === "hinglish" ? "hi-Latn" : option.value} aria-pressed={language === option.value} disabled={isLoading} onClick={() => chooseLanguage(option.value)} className={`rounded-lg border px-4 py-2 text-sm font-medium transition-colors disabled:opacity-50 ${language === option.value ? "border-[#1E3A8A] bg-[#1E3A8A] text-white" : "border-gray-200 bg-white text-gray-700 hover:bg-blue-50"}`}>
+                {option.label}
+              </button>
+            ))}
+          </div>
+        </div>
+        <p className="mt-2 text-sm text-gray-500">{copy.hint}</p>
+      </div>
+
+      {/* Chat Window */}
+      <div className="bg-white rounded-2xl shadow-sm border border-gray-200 flex flex-col">
+        <div className="flex items-center justify-between px-5 py-3 border-b border-gray-200">
+          <p className="text-sm text-gray-600">{copy.followup}</p>
+          <Button variant="ghost" disabled={isLoading} onClick={() => { setMessages([{ ...WELCOME_MESSAGE, content: copy.welcome, language }]); setContext(undefined); setError(""); setRetryQuestion(""); setInput(""); }}>{copy.newChat}</Button>
+        </div>
+        {/* Messages */}
+        <div role="log" aria-live="polite" aria-busy={isLoading} aria-label="Assistant conversation" className="h-[520px] overflow-y-auto p-5 space-y-5 bg-gray-50 rounded-t-2xl">
+          {messages.map(msg => (
+            <MessageBubble key={msg.id} message={msg} />
           ))}
-          {isProcessing && (
-            <div className="flex items-start gap-4">
-              <div className="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center flex-shrink-0">
-                <Bot className="w-5 h-5 text-white" />
+
+          {/* Typing indicator */}
+          {isLoading && (
+            <div className="flex items-start gap-3">
+              <div className="w-9 h-9 bg-[#1E3A8A] rounded-lg flex items-center justify-center flex-shrink-0">
+                <Sparkles className="w-4 h-4 text-white" />
               </div>
-              <div className="bg-white rounded-xl shadow-sm border border-gray-200 px-5 py-4">
-                <div className="flex gap-1.5">
+              <div className="bg-white rounded-xl shadow-sm border border-gray-200 px-4 py-3">
+                <div className="flex gap-1.5 items-center">
                   <div className="w-2 h-2 bg-blue-400 rounded-full animate-bounce" style={{ animationDelay: "0ms" }} />
                   <div className="w-2 h-2 bg-blue-400 rounded-full animate-bounce" style={{ animationDelay: "200ms" }} />
                   <div className="w-2 h-2 bg-blue-400 rounded-full animate-bounce" style={{ animationDelay: "400ms" }} />
+                  <span className="text-xs text-gray-400 ml-1">{copy.loading}</span>
                 </div>
               </div>
             </div>
           )}
+          <div ref={bottomRef} />
         </div>
 
-        {/* Suggested Questions */}
-        {messages.length <= 1 && (
-          <div className="border-t-2 border-gray-200 p-5 bg-white">
-            <p className="text-xs font-semibold text-gray-700 mb-3 uppercase tracking-wider">
-              Suggested Questions
+        {/* Example Questions */}
+        {showExamples && (
+          <div className="border-t border-gray-200 p-4 bg-white">
+            <p className="text-xs font-semibold text-gray-500 mb-3 uppercase tracking-wider">
+              {copy.tryAsking}
             </p>
-            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
-              {formalPrompts.map((prompt) => (
+            <div className="grid grid-cols-1 sm:grid-cols-2 gap-2">
+              {copy.examples.map(q => (
                 <button
-                  key={prompt}
-                  onClick={() => handleSend(prompt)}
-                  className="text-left px-4 py-3 bg-gray-50 border border-gray-300 rounded-lg hover:border-blue-400 hover:bg-blue-50 hover:shadow-sm transition-all text-sm text-gray-800"
+                  key={q}
+                  onClick={() => sendQuestion(q)}
+                  disabled={isLoading}
+                  className="text-left px-3 py-2.5 bg-gray-50 border border-gray-200 rounded-xl hover:border-blue-400 hover:bg-blue-50 transition-all text-sm text-gray-700 leading-snug disabled:opacity-50"
                 >
-                  {prompt}
+                  {q}
                 </button>
               ))}
             </div>
           </div>
         )}
 
-        {/* Input Area */}
-        <div className="border-t-2 border-gray-200 p-5 bg-white rounded-b-2xl">
+        {/* Error */}
+        {error && (
+          <div role="alert" className="mx-4 mb-0 mt-3 flex items-center gap-2 rounded-lg border border-red-200 bg-red-50 px-4 py-3 text-sm text-red-700">
+            <AlertCircle className="h-4 w-4 shrink-0" />
+            {error}
+            {retryQuestion && <Button variant="ghost" disabled={isLoading} onClick={() => sendQuestion(retryQuestion, true)}>{copy.retry}</Button>}
+          </div>
+        )}
+
+        {/* Input */}
+        <div className="border-t border-gray-200 p-4 bg-white rounded-b-2xl">
           <div className="flex gap-3">
-            <Input
-              value={input}
-              onChange={(e) => setInput(e.target.value)}
-              onKeyPress={(e) => e.key === "Enter" && !e.shiftKey && handleSend()}
-              placeholder="Enter your query regarding candidate information, credibility metrics, or electoral data..."
-              className="flex-1 border-2 border-gray-300 focus:border-blue-500 rounded-lg px-4 py-3"
-              disabled={isProcessing}
-            />
+            <div className="flex-1 relative">
+              <Input
+                ref={inputRef}
+                value={input}
+                onChange={e => { setInput(e.target.value); if (!explicitLanguage.current) setLanguage(detectLanguage(e.target.value)); }}
+                onKeyDown={handleKeyDown}
+                placeholder={copy.placeholder}
+                aria-label={copy.input}
+                maxLength={MAX_CHARS}
+                disabled={isLoading}
+                className="pr-16"
+              />
+              {input.length > MAX_CHARS * 0.8 && (
+                <span className={`absolute right-3 top-1/2 -translate-y-1/2 text-xs font-medium ${charsLeft < 20 ? "text-red-500" : "text-gray-400"}`}>
+                  {charsLeft}
+                </span>
+              )}
+            </div>
             <Button
-              onClick={() => handleSend()}
-              disabled={!input.trim() || isProcessing}
-              className="px-6 bg-blue-600 hover:bg-blue-700 text-white rounded-lg"
+              onClick={() => sendQuestion(input)}
+              disabled={!input.trim() || isLoading}
+              aria-label={copy.send}
+              className="px-5 bg-[#1E3A8A] hover:bg-[#1E40AF] text-white rounded-lg flex-shrink-0"
             >
-              <Send className="w-5 h-5" />
+              <Send className="w-4 h-4" />
             </Button>
           </div>
-          <p className="text-xs text-gray-500 mt-3">
-            All responses are generated using verified data from Election Commission of India and government databases. For original source documents, please refer to individual citations.
+          <p className="text-xs text-gray-400 mt-2">
+            {copy.footer}
           </p>
         </div>
       </div>
 
       {/* Disclaimer */}
-      <div className="bg-blue-50 rounded-xl p-5 border-2 border-blue-200">
-        <p className="text-xs text-gray-800 leading-relaxed">
-          <strong className="text-blue-900">Important Disclaimer:</strong> This AI-powered assistant provides factual information
-          derived exclusively from publicly available electoral data, Election Commission of India affidavits, and verified government
-          sources. While rigorous verification protocols are maintained, users are encouraged to independently verify critical
-          information against original source documents available on official portals. This tool serves as a decision-support system
-          for informed electoral participation and should not constitute the sole basis for voting decisions. Data accuracy as of March 2026.
+      <div className="rounded-xl border border-blue-100 bg-blue-50 p-4">
+        <p className="text-xs text-gray-700 leading-relaxed">
+          {copy.disclaimer}
         </p>
       </div>
     </div>
   );
 }
 
+// --- Sub-components ----------------------------------------------------------
+
 function MessageBubble({ message }: { message: Message }) {
   const isUser = message.role === "user";
-
   return (
-    <div className={`flex ${isUser ? "justify-end" : "justify-start"} items-start gap-4`}>
+    <div lang={message.language === "hinglish" ? "hi-Latn" : message.language ?? "en"} className={`flex ${isUser ? "justify-end" : "justify-start"} items-start gap-3`}>
       {!isUser && (
-        <div className="w-10 h-10 bg-blue-600 rounded-lg flex items-center justify-center flex-shrink-0">
-          <Bot className="w-5 h-5 text-white" />
+        <div className="w-9 h-9 bg-[#1E3A8A] rounded-lg flex items-center justify-center flex-shrink-0">
+          <Sparkles className="w-4 h-4 text-white" />
         </div>
       )}
-      <div className="max-w-[75%]">
+      <div className={`max-w-[80%] sm:max-w-[72%] ${isUser ? "items-end" : "items-start"} flex flex-col`}>
         <div
-          className={`rounded-xl px-5 py-4 shadow-sm ${
+          className={`rounded-xl px-4 py-3 shadow-sm text-sm whitespace-pre-line leading-relaxed ${
             isUser
-              ? "bg-gradient-to-br from-blue-600 to-blue-700 text-white"
-              : "bg-white border-2 border-gray-200 text-gray-900"
+              ? "bg-gradient-to-br from-[#1E3A8A] to-[#1E40AF] text-white"
+              : "bg-white border border-gray-200 text-gray-900"
           }`}
         >
-          <p className="text-sm whitespace-pre-line leading-relaxed">{message.content}</p>
+          {message.content}
         </div>
-        <p className="text-xs text-gray-500 mt-2 px-2">
+        {message.timestamp && <p className="text-xs text-gray-400 mt-1.5 px-1">
           {new Date(message.timestamp).toLocaleTimeString("en-IN", {
             hour: "2-digit",
             minute: "2-digit",
           })}
-        </p>
+        </p>}
       </div>
       {isUser && (
-        <div className="w-10 h-10 bg-gray-700 rounded-lg flex items-center justify-center flex-shrink-0">
-          <User className="w-5 h-5 text-white" />
+        <div className="w-9 h-9 bg-gray-700 rounded-lg flex items-center justify-center flex-shrink-0">
+          <UserIcon className="w-4 h-4 text-white" />
         </div>
       )}
     </div>
@@ -273,26 +333,15 @@ function InfoCard({
   description: string;
 }) {
   return (
-    <div className="bg-white rounded-xl border border-gray-200 p-4 text-center">
-      <div className="text-blue-600 mb-2 flex justify-center">{icon}</div>
+    <div className="bg-white rounded-xl border border-gray-200 p-4 text-center shadow-sm">
+      <div className="text-[#1E3A8A] mb-2 flex justify-center">{icon}</div>
       <h3 className="text-sm font-semibold text-gray-900 mb-1">{title}</h3>
-      <p className="text-xs text-gray-600">{description}</p>
+      <p className="text-xs text-gray-500">{description}</p>
     </div>
   );
 }
 
-function Bot({ className }: { className?: string }) {
-  return (
-    <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
-      <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
-      <path d="M7 11V7a5 5 0 0 1 10 0v4" />
-      <circle cx="9" cy="16" r="1" />
-      <circle cx="15" cy="16" r="1" />
-    </svg>
-  );
-}
-
-function User({ className }: { className?: string }) {
+function UserIcon({ className }: { className?: string }) {
   return (
     <svg className={className} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2">
       <path d="M20 21v-2a4 4 0 0 0-4-4H8a4 4 0 0 0-4 4v2" />
@@ -300,4 +349,3 @@ function User({ className }: { className?: string }) {
     </svg>
   );
 }
-

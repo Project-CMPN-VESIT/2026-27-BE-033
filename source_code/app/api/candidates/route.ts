@@ -2,6 +2,7 @@ import { NextResponse } from "next/server";
 import { desc, ilike, or, and, eq, sql } from "drizzle-orm";
 import { db, databaseUnavailable } from "@/lib/db";
 import { candidates } from "@/lib/schema";
+import { determineState } from "@/lib/verificationMatch";
 
 export const runtime = "nodejs";
 
@@ -12,7 +13,7 @@ export async function GET(request: Request) {
   const state = params.get("state")?.trim();
   const constituency = params.get("constituency")?.trim();
   const party = params.get("party")?.trim();
-  const limit = Math.min(Number(params.get("limit")) || 50, 300);
+  const limit = Math.min(Number(params.get("limit")) || 50, 1000);
   const offset = Number(params.get("offset")) || 0;
 
   const conditions = [];
@@ -24,7 +25,6 @@ export async function GET(request: Request) {
       ilike(candidates.party, `%${query}%`),
     ));
   }
-  if (state) conditions.push(eq(candidates.state, state));
   if (constituency) conditions.push(ilike(candidates.constituency, `%${constituency}%`));
   if (party) conditions.push(ilike(candidates.party, `%${party}%`));
 
@@ -33,5 +33,10 @@ export async function GET(request: Request) {
   const [countRow] = await db.select({ count: sql<number>`count(*)::int` }).from(candidates).where(where);
   const rows = await db.select().from(candidates).where(where).orderBy(desc(candidates.credibilityScore)).limit(limit).offset(offset);
 
-  return NextResponse.json({ candidates: rows, total: countRow?.count ?? 0 });
+  const normalizedRows = rows.map((candidate) => ({
+    ...candidate,
+    state: determineState(candidate.constituency, candidate.state === "Delhi" ? candidate.state : ""),
+  })).filter((candidate) => !state || candidate.state === state);
+
+  return NextResponse.json({ candidates: normalizedRows, total: normalizedRows.length || (countRow?.count ?? 0) });
 }

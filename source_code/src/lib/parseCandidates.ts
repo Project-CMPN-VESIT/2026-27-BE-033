@@ -1,5 +1,7 @@
 import * as XLSX from "xlsx";
 import path from "path";
+import fs from "node:fs";
+import { determineState } from "./verificationMatch";
 
 interface RawCandidate {
   srNo: number;
@@ -48,51 +50,34 @@ function formatAssets(rawAmount: number): string {
 }
 
 function calculateCriminalRisk(criminalCases: number): number {
-  if (criminalCases === 0) return 85 + Math.round(Math.random() * 10);
-  if (criminalCases === 1) return 65 + Math.round(Math.random() * 10);
-  if (criminalCases <= 3) return 45 + Math.round(Math.random() * 10);
-  if (criminalCases <= 5) return 30 + Math.round(Math.random() * 10);
-  if (criminalCases <= 10) return 15 + Math.round(Math.random() * 10);
-  if (criminalCases <= 20) return 5 + Math.round(Math.random() * 10);
-  return Math.max(2, 15 - Math.round(Math.random() * 10));
+  return Math.round(100 / (1 + criminalCases));
 }
 
 function calculateFinancialTransparency(totalAssets: number, liabilities: number): number {
-  if (totalAssets === 0) return 15 + Math.round(Math.random() * 15);
-  const ratio = liabilities / totalAssets;
-  if (ratio > 0.8) return 20 + Math.round(Math.random() * 10);
-  if (ratio > 0.5) return 35 + Math.round(Math.random() * 10);
-  if (ratio > 0.3) return 50 + Math.round(Math.random() * 10);
-  if (ratio > 0.1) return 65 + Math.round(Math.random() * 10);
-  return 80 + Math.round(Math.random() * 15);
+  return Math.round(Math.max(0, (1 - liabilities / (totalAssets + 1)) * 100));
+}
+
+function calculateEducationScore(education: string): number {
+  const value = education.toLowerCase().replace(/[.,]/g, " ").replace(/\s+/g, " ").trim();
+  if (/(doctorate|ph\.?d|m\.?d|ll\.?b|professional degree)/i.test(value)) return 100;
+  if (/(post graduate|postgraduate|post-graduate)/i.test(value)) return 85;
+  if (/(graduate professional|graduate degree|graduate|b\.?a|b\.?sc|b\.?tech|b\.?com)/i.test(value)) return 70;
+  if (/(higher secondary|12th|twelfth)/i.test(value)) return 50;
+  if (/(secondary|10th|matriculation)/i.test(value)) return 35;
+  if (/(8th|5th|literate|primary|below 10th)/i.test(value)) return 20;
+  return 10;
 }
 
 function calculateCredibilityScore(
   criminalRisk: number,
   financialTransparency: number,
-  criminalCases: number,
-  age: number,
-  education: string,
+  educationScore: number,
 ): number {
-  let score = 0;
-  score += criminalRisk * 0.35;
-  score += financialTransparency * 0.30;
-  if (criminalCases === 0) score += 15;
-  else if (criminalCases <= 2) score += 8;
-  else if (criminalCases <= 5) score += 2;
-  else score -= Math.min(15, criminalCases * 0.8);
-  if (age >= 30 && age <= 55) score += 8;
-  else if (age >= 25 && age <= 65) score += 5;
-  else score += 2;
-  const edu = education.toLowerCase();
-  if (edu.includes("doctorate")) score += 12;
-  else if (edu.includes("post graduate")) score += 9;
-  else if (edu.includes("graduate professional")) score += 7;
-  else if (edu.includes("graduate")) score += 5;
-  else if (edu.includes("12th")) score += 3;
-  else if (edu.includes("10th")) score += 1;
-  else score -= 2;
-  return Math.max(5, Math.min(95, Math.round(score)));
+  return Math.round(
+    criminalRisk * 0.5 +
+    educationScore * 0.2 +
+    financialTransparency * 0.3,
+  );
 }
 
 function calculatePerformance(credibilityScore: number, criminalCases: number): number {
@@ -111,13 +96,6 @@ function generateExperience(age: number, education: string): string {
   return `${yearsInPolitics} years in politics and governance`;
 }
 
-function determineState(constituency: string): string {
-  const c = constituency.toLowerCase();
-  if (c.startsWith("delhi")) return "Delhi";
-  if (c === "new delhi" || c === "north east delhi" || c === "north west delhi" || c === "south delhi" || c === "west delhi" || c === "east delhi") return "Delhi";
-  return "Kerala";
-}
-
 function generatePhotoUrl(name: string, index: number): string {
   const colors = ["3B82F6", "EF4444", "10B981", "F59E0B", "8B5CF6", "EC4899", "06B6D4", "F97316"];
   const color = colors[index % colors.length];
@@ -126,8 +104,11 @@ function generatePhotoUrl(name: string, index: number): string {
 }
 
 export function parseExcelCandidates(): SeedCandidate[] {
-  const filePath = path.resolve(process.cwd(), "Candidate Affidavits", "Candidate Detailed Info(cleaned).xlsx");
-  const workbook = XLSX.readFile(filePath);
+  const sourcePath = path.resolve(process.cwd(), "Candidate Affidavits", "Candidate Detailed Info (1).xlsx");
+  if (!fs.existsSync(sourcePath)) {
+    throw new Error(`Candidate affidavit workbook not found: ${sourcePath}`);
+  }
+  const workbook = XLSX.readFile(sourcePath);
   const sheetName = workbook.SheetNames[0];
   const sheet = workbook.Sheets[sheetName];
   const rows: unknown[][] = XLSX.utils.sheet_to_json(sheet, { header: 1 });
@@ -151,8 +132,9 @@ export function parseExcelCandidates(): SeedCandidate[] {
     const liabilityValue = parseIndianRupees(raw.liabilities);
     const criminalRisk = calculateCriminalRisk(raw.criminalCases);
     const financialTransparency = calculateFinancialTransparency(assetValue, liabilityValue);
+    const educationScore = calculateEducationScore(raw.education);
     const credibilityScore = calculateCredibilityScore(
-      criminalRisk, financialTransparency, raw.criminalCases, raw.age, raw.education,
+      criminalRisk, financialTransparency, educationScore,
     );
     const performance = calculatePerformance(credibilityScore, raw.criminalCases);
     const state = determineState(raw.constituency);
