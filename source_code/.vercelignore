@@ -1,0 +1,18 @@
+node_modules
+.next
+.git
+.vercel
+.env*
+*.log
+*.tsbuildinfo
+tmp_*
+eng.traineddata
+colab
+eval
+Candidate Affidavits/**/*.pdf
+Candidate Affidavits/*.pdf
+
+.deployment-cache
+
+**/*.pdf
+**/*.PDF

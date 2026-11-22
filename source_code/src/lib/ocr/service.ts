@@ -101,7 +101,7 @@ export async function extractAffidavit(file: Buffer, mimeType: string, filename 
     }
   }
 
-  if (!process.env.GOOGLE_APPLICATION_CREDENTIALS && !process.env.GOOGLE_CLOUD_PROJECT) {
+  if (!process.env.GOOGLE_APPLICATION_CREDENTIALS && !process.env.GOOGLE_CREDENTIALS_JSON && !process.env.GOOGLE_CLOUD_PROJECT) {
     throw new Error(
       unlimited || isBaiduOcrConfigured()
         ? "OCR failed (see server logs). Configure GOOGLE_APPLICATION_CREDENTIALS as a fallback."
@@ -109,7 +109,11 @@ export async function extractAffidavit(file: Buffer, mimeType: string, filename 
     );
   }
 
-  const client = new ImageAnnotatorClient();
+  const client = new ImageAnnotatorClient(
+    process.env.GOOGLE_CREDENTIALS_JSON
+      ? { credentials: JSON.parse(process.env.GOOGLE_CREDENTIALS_JSON) }
+      : {},
+  );
   try {
     const [result] = await client.documentTextDetection({ image: { content: file } });
     const text = result.fullTextAnnotation?.text?.trim() ?? "";

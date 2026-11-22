@@ -319,3 +319,13 @@ Passwords use salted scrypt hashes. Session cookies are HTTP-only, SameSite=Lax,
 A database with the `users` table is required. Set a strong, stable `AUTH_SECRET` in production and whenever sessions should survive development-server restarts. Development without that variable uses a randomly generated process secret, retained through hot reloads. Old session cookies from the previous token format require signing in again. Candidate information remains publicly accessible; adding login does not restrict the existing public pages. Password recovery is not configured because the account currently has no verified recovery channel. Placeholder Terms/Privacy buttons have been removed instead of presenting nonfunctional legal controls.
 
 Run `npm run test:auth` for isolated validation, hashing, session, duplicate-account, error-handling and rate-limit tests. With the local dev server running and `.env.local` configured, `npm run auth:check-live` exercises real registration, login, session cookies and logout against localhost. It creates one randomly named synthetic account and removes exactly that account afterward; it prints no passwords or cookies. `tsx --env-file=.env.local src/lib/checkAuthLive.ts --check-only` checks access to the users table without reading account records.
+
+## Vercel deployment
+
+Deploy from `source_code` (set that as the Root Directory when importing the repository). The Next.js preset and build command are in `vercel.json`.
+
+Set production environment variables in Vercel: `DATABASE_URL`, a strong random `AUTH_SECRET`, and the existing AI/OCR provider keys. For Google Vision, set `GOOGLE_CREDENTIALS_JSON` to the service-account JSON contents instead of copying the local `GOOGLE_APPLICATION_CREDENTIALS` path. Credentials must stay server-only. A self-hosted OCR URL must be reachable from Vercel.
+
+The deployment includes the verification workbook and bundled candidate JSON. `.vercelignore` excludes local environment files, development artifacts and the bulk source PDF archive; bulk OCR scripts remain local jobs.
+
+Run `npx vercel login`, `npx vercel link`, then `npx vercel --prod` from this directory. Production OCR requests are also subject to Vercel's request body and execution limits.

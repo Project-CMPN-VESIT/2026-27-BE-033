@@ -35,35 +35,44 @@ export function Comparison() {
   const [allCandidates, setAllCandidates] = useState<Candidate[]>([]);
   const [loading, setLoading] = useState(true);
   const [selectedCandidates, setSelectedCandidates] = useState<string[]>([]);
-  const [showSelector, setShowSelector] = useState(false);
+  const [showSelector, setShowSelector] = useState(true);
+  const [loadError, setLoadError] = useState("");
+  const [retry, setRetry] = useState(0);
   const [filterState, setFilterState] = useState<string>("all");
   const [filterConstituency, setFilterConstituency] = useState<string>("");
-  const [constituencies, setConstituencies] = useState<{ constituency: string; state: string; count: number }[]>([]);
 
   useEffect(() => {
+    const controller = new AbortController();
     setLoading(true);
-    const params = new URLSearchParams();
-    params.set("limit", "1000");
-    fetch(`/api/candidates?${params}`)
+    setLoadError("");
+    fetch("/api/comparison", { signal: controller.signal })
       .then(async (res) => {
-        if (!res.ok) return { candidates: [] };
+        if (!res.ok) throw new Error("Candidate comparison data could not load. Please try again.");
         return res.json();
       })
       .then((data) => {
-        setAllCandidates(data.candidates || []);
-        setLoading(false);
+        if (!Array.isArray(data.candidates)) throw new Error("Candidate comparison data could not load. Please try again.");
+        setAllCandidates(data.candidates);
       })
-      .catch(() => { setLoading(false); });
-  }, []);
+      .catch(() => {
+        if (!controller.signal.aborted) setLoadError("Candidate comparison data could not load. Please try again.");
+      })
+      .finally(() => { if (!controller.signal.aborted) setLoading(false); });
+    return () => controller.abort();
+  }, [retry]);
 
-  useEffect(() => {
-    fetch(`/api/constituencies?state=${filterState}`)
-      .then(async (res) => res.ok ? res.json() : { constituencies: [] })
-      .then((data) => setConstituencies(data.constituencies || []))
-      .catch(() => undefined);
-  }, [filterState]);
+  const constituencyCounts = new Map<string, number>();
+  for (const candidate of allCandidates) {
+    if (filterState === "all" || candidate.state === filterState) {
+      constituencyCounts.set(candidate.constituency, (constituencyCounts.get(candidate.constituency) || 0) + 1);
+    }
+  }
+  const constituencies = [...constituencyCounts].sort(([a], [b]) => a.localeCompare(b))
+    .map(([constituency, count]) => ({ constituency, count }));
 
-  const comparedCandidates = allCandidates.filter((c) => selectedCandidates.includes(c.id));
+  const comparedCandidates = selectedCandidates
+    .map((id) => allCandidates.find((candidate) => candidate.id === id))
+    .filter((candidate): candidate is Candidate => !!candidate);
   const regionCounts = allCandidates.reduce<Record<string, number>>((counts, candidate) => {
     if (candidate.state) counts[candidate.state] = (counts[candidate.state] || 0) + 1;
     return counts;
@@ -153,7 +162,7 @@ export function Comparison() {
           <span className="font-medium">Filter by region</span>
         </div>
         <div className="flex flex-wrap gap-3">
-          <div className="flex gap-2">
+          <div className="flex flex-wrap gap-2">
             {regions.map((s) => (
               <button
                 key={s}
@@ -169,6 +178,7 @@ export function Comparison() {
             ))}
           </div>
           <select
+            aria-label="Filter by constituency"
             value={filterConstituency}
             onChange={(e) => setFilterConstituency(e.target.value)}
             className="px-3 py-1.5 rounded-lg text-sm border border-gray-200 bg-white"
@@ -187,6 +197,9 @@ export function Comparison() {
       {/* Candidate Selector */}
       <div className="bg-white rounded-2xl shadow-sm border border-gray-100 p-6">
         <button
+          type="button"
+          aria-expanded={showSelector}
+          aria-controls="comparison-candidate-selector"
           onClick={() => setShowSelector(!showSelector)}
           className="flex items-center justify-between w-full"
         >
@@ -215,7 +228,7 @@ export function Comparison() {
           </div>
         )}
         {showSelector && (
-          <div className="mt-4">
+          <div id="comparison-candidate-selector" className="mt-4">
             <p className="mb-3 flex items-center gap-2 text-xs text-slate-500">
               <Info className="h-4 w-4 text-[#1e3a8a]" />
               Choose up to three candidates. Use the region filter to browse another region; existing selections remain saved.
@@ -223,6 +236,11 @@ export function Comparison() {
           <div className="grid max-h-80 grid-cols-1 gap-3 overflow-y-auto sm:grid-cols-2">
             {loading ? (
               <p className="text-sm text-gray-500 col-span-2">Loading candidates...</p>
+            ) : loadError ? (
+              <div role="alert" className="col-span-full rounded-xl bg-red-50 p-4 text-sm text-red-700">
+                <p>{loadError}</p>
+                <Button type="button" variant="outline" onClick={() => setRetry((current) => current + 1)} className="mt-3">Retry</Button>
+              </div>
             ) : (
               visibleCandidates.map((candidate) => (
                 <label
@@ -236,14 +254,11 @@ export function Comparison() {
                   <input
                     type="checkbox"
                     checked={selectedCandidates.includes(candidate.id)}
-                    onChange={(e) => {
-                      if (e.target.checked) {
-                        if (selectedCandidates.length < 3) {
-                          setSelectedCandidates([...selectedCandidates, candidate.id]);
-                        }
-                      } else {
-                        setSelectedCandidates(selectedCandidates.filter((cid) => cid !== candidate.id));
-                      }
+                    aria-label={`Compare ${candidate.name}`}
+                    onChange={() => {
+                      setSelectedCandidates((current) => current.includes(candidate.id)
+                        ? current.filter((id) => id !== candidate.id)
+                        : current.length < 3 ? [...current, candidate.id] : current);
                     }}
                     disabled={!selectedCandidates.includes(candidate.id) && selectedCandidates.length >= 3}
                     className="h-4 w-4 accent-[#1e3a8a]"
@@ -256,7 +271,7 @@ export function Comparison() {
                 </label>
               ))
             )}
-            {!loading && visibleCandidates.length === 0 && (
+            {!loading && !loadError && visibleCandidates.length === 0 && (
               <p className="col-span-2 rounded-xl bg-slate-50 p-4 text-sm text-slate-500">
                 No candidates are available for this region yet.
               </p>

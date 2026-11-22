@@ -108,7 +108,7 @@ export function parseExcelCandidates(): SeedCandidate[] {
   if (!fs.existsSync(sourcePath)) {
     throw new Error(`Candidate affidavit workbook not found: ${sourcePath}`);
   }
-  const workbook = XLSX.readFile(sourcePath);
+  const workbook = XLSX.read(fs.readFileSync(sourcePath), { type: "buffer" });
   const sheetName = workbook.SheetNames[0];
   const sheet = workbook.Sheets[sheetName];
   const rows: unknown[][] = XLSX.utils.sheet_to_json(sheet, { header: 1 });

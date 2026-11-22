@@ -1,4 +1,5 @@
 node_modules/
+.vercel/
 .next/
 .env.local
 drizzle/
@@ -9,3 +10,7 @@ eng.traineddata
 ocr-grind-*.log
 loop-gemini-*.txt
 loop-gemini.tmp.ps1
+
+.deployment-cache/
+.vercel
+.env*
